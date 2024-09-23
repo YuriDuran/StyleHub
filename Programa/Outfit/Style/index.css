@@ -1,0 +1,71 @@
+/*TODO Importar fuente */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+/*! Aqui se encuentra el css general */
+* {
+    box-sizing: border-box;
+    font-family: "IBM Plex Mono", monospace;
+}
+
+html,
+
+body {
+    height: 100%;
+}
+
+/*! Aqui se encuentra el css del header */
+header {
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+.logo {
+    height: 100px;
+    width: 100px;
+}
+
+/** Aqui se encuentra el css del cuerpo */
+main {
+    flex: 1;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.banner {
+    width: 100%;
+}
+
+.separador{
+    height: 45px;
+}
+
+/*! Aqui se encuentra el css del destacado */
+.Tdestacado {
+    height: 350px;
+}
+
+.destacado {
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.destacado img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+/*! Aqui se encuentra el css del footer */
+footer {
+    color: white;
+    position: fixed;
+    bottom: 0px;
+    height: 44px;
+    width: 100%;
+    background: rgba(128, 128, 128, 0.5);
+}
+
+footer div .row .col-md-4 {
+    margin-top: 10px;
+}
