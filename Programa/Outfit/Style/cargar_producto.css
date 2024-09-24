@@ -25,11 +25,34 @@ header {
 
 /** Aqui se encuentra el css del cuerpo */
 .separador{
-    height: 45px;
+    height: 55px;
 }
 
 label{
     margin-top: 20px;
+}
+
+.fondoT{
+    background-image: url(../img/FondoRegistroProducto.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #262c33;
+}
+
+.fondoF{
+    background-color: rgba(128, 128, 128, 0.9);
+    border-radius: 10px;
+}
+
+.Cboton{
+    margin-top:25px !important;
+}
+
+.enviar{
+    background-color: black !important;
+    color: white !important;
 }
 
 /*! Aqui se encuentra el css del footer */

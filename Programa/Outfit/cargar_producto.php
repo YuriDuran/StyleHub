@@ -4,7 +4,7 @@ require_once 'function.php'
 <!-- Aqui se encuentra el head de html de la pagina -->
 <?php render_template('head', 'cargar_producto.css'); ?>
 
-<body>
+<body class="fondoT">
     <div class="container-fluid">
         <!-- Aqui se encuentra el header de la pagina -->
         <?php render_template('Header'); ?>
@@ -14,10 +14,10 @@ require_once 'function.php'
 
             <div class="col-md-12 separador"></div>
 
-            <div class="col-md-1"></div>
+            <div class="col-md-2"></div>
 
             <!-- Cuerpo Formulario -->
-            <div class="col-md-10">
+            <div class="col-md-8 fondoF">
                 <h3 class="text-center">Creacion de producto</h3>
                 <form action="">
                     <div class="row">
@@ -60,15 +60,38 @@ require_once 'function.php'
                             <label for="descripcion" class="form-label">Descripcion</label>
                             <textarea name="descripcion" id="descripcion" placeholder="Ingrese una breve descripcion del producto" class="form-control" required></textarea>
                         </div>
+                        <div class="col-md-12 mt-4">
+                            <p>En este apartado se le solicita subir 4 fotos de la prenda a publicar en nuestra pagina. Esto para poder nosotros procesar esta prenda para el mdoelado por eso se solicitan imagenes frontales, costados y trasero</p>
+                        </div>
                         <div class="col-md-12">
-                            <label class="form-label" for="imagen">Cargar</label>
+                            <label class="form-label" for="imagenF">Cargar foto frontal</label>
                             <input type="file" class="form-control" id="foto" name="foto">
                         </div>
+                        <div class="col-md-12">
+                            <label class="form-label" for="imagenD">Cargar foto lado derecho</label>
+                            <input type="file" class="form-control" id="foto" name="foto">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label" for="imagenI">Cargar foto lado izquierdo</label>
+                            <input type="file" class="form-control" id="foto" name="foto">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label" for="imagenT">Cargar foto trasero</label>
+                            <input type="file" class="form-control" id="foto" name="foto">
+                        </div>
+
+                        <div class="col-md-12 text-center Cboton">
+                            <button class="btn enviar">Registrar producto</button>
+                        </div>
                     </div>
+
+
                 </form>
             </div>
 
-            <div class="col-md-1"></div>
+            <div class="col-md-2"></div>
+
+            <div class="col-md-12 separador"></div>
         </main>
 
         <!-- Aqui se encuentra el footer de la pagina -->
