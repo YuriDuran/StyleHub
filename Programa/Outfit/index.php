@@ -19,7 +19,7 @@ require_once 'function.php'
                 <a href="cargar_producto.php">Cargar producto</a>
             </div>
             <div class="col-md-4 text-center">
-                <a href="">Proximamente..</a>
+                <a href="render.php">render</a>
             </div>
             <div class="col-md-4 text-center">
                 <a href="">Proximamente..</a>
