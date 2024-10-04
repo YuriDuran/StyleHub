@@ -11,8 +11,10 @@ require_once 'function.php'
         <!--Aqui se encuentra el cuerpo de la pagina -->
         <main class="row">
             <!-- Aqui se encuentra el banner de la pagina principal -->
-            <div class="col-md-12 text-center">
-                <img src="/img/foto_principal.jpg" class="banner">
+            <div class="hero-image">
+                <div class="hero-logo" id="logo-large">
+                    <img src="img/StyleHubLogo.png" alt="Logo Grande">
+                </div>
             </div>
 
             <div class="col-md-4 text-center">
@@ -44,7 +46,7 @@ require_once 'function.php'
         <!--Aqui se encuentra el footer de la pagina -->
         <?php render_template('Footer'); ?>
     </div>
-
+    <script src="js/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </body>

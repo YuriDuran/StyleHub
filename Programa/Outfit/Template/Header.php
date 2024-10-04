@@ -1,9 +1,5 @@
-<header class="row">
-    <div class="col-md-4"></div>
-
-    <div class="col-md-4 text-center">
-        <a href="/"><img src="img/StyleHubLogo.png" class="logo"></a>
+<header class="fixed-header">
+    <div class="logo-small" id="logo-small">
+        <img src="img/logo.png" alt="Logo Pequeño">
     </div>
-    
-    <div class="col-md-4"></div>
 </header>
