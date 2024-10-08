@@ -5,15 +5,15 @@
     <div class="row">
 
         <div class="col-md-4 text-center destacado">
-            <img src="../img/mujer3.jpg" alt="mujer 1" class="img-fluid">
+            <img src="img/mujer3.jpg" alt="mujer 1" class="img-fluid">
         </div>
 
         <div class="col-md-4 text-center destacado">
-            <img src="../img/mujer4.jpg" alt="mujer 2" class="img-fluid">
+            <img src="img/mujer4.jpg" alt="mujer 2" class="img-fluid">
         </div>
 
         <div class="col-md-4 text-center destacado">
-            <img src="../img/mujer5.jpg" alt="mujer 3" class="img-fluid">
+            <img src="img/mujer5.jpg" alt="mujer 3" class="img-fluid">
         </div>
     </div>
 </div>

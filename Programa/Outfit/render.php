@@ -24,7 +24,7 @@ require_once 'function.php'
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0xffffff);  // Fondo blanco
 
-        const camera = new THREE.PerspectiveCamera(120, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 10);
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
@@ -49,7 +49,7 @@ require_once 'function.php'
                 requestAnimationFrame(animate);
 
                 // Rotación del maniquí
-                mannequin.rotation.y += 0.01;
+                //mannequin.rotation.y += 0.01;
 
                 renderer.render(scene, camera);
             }
