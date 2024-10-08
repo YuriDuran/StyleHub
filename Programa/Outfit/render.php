@@ -39,9 +39,9 @@ require_once 'function.php'
 
         // Cargar el modelo del maniquí (GLTF)
         const loader = new THREE.GLTFLoader();
-        loader.load('Style/bob/scene.gltf', function (gltf) {
+        loader.load('Style/hombre/scene.gltf', function (gltf) {
             const mannequin = gltf.scene;
-            mannequin.scale.set(1, 1, 1);  // Escalar si es necesario
+            mannequin.scale.set(0.1, 0.1, 0.1);  // Escalar si es necesario
             scene.add(mannequin);
 
             // Animación del maniquí
@@ -49,7 +49,7 @@ require_once 'function.php'
                 requestAnimationFrame(animate);
 
                 // Rotación del maniquí
-                //mannequin.rotation.y += 0.01;
+                mannequin.rotation.y += 0.01;
 
                 renderer.render(scene, camera);
             }
