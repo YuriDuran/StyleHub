@@ -33,17 +33,23 @@ window.addEventListener('scroll', function() {
 let currentImageIndex = 0;
 const backgroundImages = [
     '/img/prueba.jpg',   // Primera imagen
-    '/img/fondoo.jpeg',  // Segunda imagen
+    '/img/mujer_posando.jpg',  // Segunda imagen
     '/img/foto_principal.jpg'   // Tercera imagen
 ];
 
-// Asegúrate de que 'heroImage' se obtiene después de que el DOM está completamente cargado
-document.addEventListener('DOMContentLoaded', function() {
-    const heroImage = document.querySelector('.hero-image');
+const heroImage = document.querySelector('.hero-image');
 
-    // Cambiar la imagen de fondo cada 2 segundos
-    setInterval(() => {
+// Cambiar la imagen de fondo con una transición suave
+setInterval(() => {
+    // Desvanecer la imagen actual
+    heroImage.style.opacity = 0;
+
+    // Esperar 1 segundo (el tiempo que dura la transición de opacidad) antes de cambiar la imagen
+    setTimeout(() => {
         currentImageIndex = (currentImageIndex + 1) % backgroundImages.length;
         heroImage.style.backgroundImage = `url('${backgroundImages[currentImageIndex]}')`;
-    }, 5000); // 2000ms = 2 segundos
-});
+
+        // Volver a mostrar la nueva imagen con la opacidad a 1
+        heroImage.style.opacity = 1;
+    }, 500);  // Tiempo en milisegundos (1000ms = 1 segundo) para sincronizar con la transición de opacidad
+}, 5000); // Cambiar la imagen cada 5 segundos
