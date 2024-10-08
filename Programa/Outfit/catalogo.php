@@ -10,28 +10,16 @@ require_once 'function.php'
 
         <!--Aqui se encuentra el cuerpo de la pagina -->
         <main class="row">
-            <!-- Aqui se encuentra el banner de la pagina principal -->
-            <div class="hero-image">
-                <div class="hero-logo" id="logo-large">
-                    <img src="img/StyleHubLogo.png" alt="Logo Grande">
-                </div>
-            </div>
-
-            <div class="col-md-4 text-center">
-                <a href="cargar_producto.php">Cargar producto</a>
-            </div>
-            <div class="col-md-4 text-center">
-                <a href="render.php">render</a>
-            </div>
-            <div class="col-md-4 text-center">
-                <a href="">Proximamente..</a>
-            </div>
+            
 
             <!-- Separador de pagina -->
             <div class="col-md-12 separador"></div>
 
-            <!-- Aqui se encuentra la zona de destacado de la pagina principal -->
-            <?php render_template('banner_detacados'); ?>
+            <div class="col-md-4"></div>
+
+            <div class="col-md-4"></div>
+            
+            <div class="col-md-4"></div>
 
             <!-- Separador de pagina -->
             <div class="col-md-12 separador"></div>
