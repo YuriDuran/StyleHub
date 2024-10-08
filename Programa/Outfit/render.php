@@ -22,7 +22,7 @@ require_once 'function.php'
     <script>
         // Configuración básica de la escena
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0xffffff);  // Fondo blanco
+        scene.background = new THREE.Color(0x0000);  // Fondo blanco
 
         const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 10);
         const renderer = new THREE.WebGLRenderer();
@@ -41,7 +41,7 @@ require_once 'function.php'
         const loader = new THREE.GLTFLoader();
         loader.load('Style/hombre/scene.gltf', function (gltf) {
             const mannequin = gltf.scene;
-            mannequin.scale.set(0.1, 0.1, 0.1);  // Escalar si es necesario
+            mannequin.scale.set(3, 3, 3);  // Escalar si es necesario
             scene.add(mannequin);
 
             // Animación del maniquí
