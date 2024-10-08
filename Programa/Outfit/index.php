@@ -24,7 +24,7 @@ require_once 'function.php'
                 <a href="render.php">render</a>
             </div>
             <div class="col-md-4 text-center">
-                <a href="catalogo.php">catalogo</a>
+                <a href="">Proximamente..</a>
             </div>
 
             <!-- Separador de pagina -->
