@@ -15,6 +15,12 @@ require_once 'function.php'
             <!-- Separador de pagina -->
             <div class="col-md-12 separador"></div>
 
+            <div class="col-md-4"></div>
+
+            <div class="col-md-4"></div>
+            
+            <div class="col-md-4"></div>
+
             <!-- Separador de pagina -->
             <div class="col-md-12 separador"></div>
 
