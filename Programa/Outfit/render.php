@@ -38,25 +38,30 @@ require_once 'function.php'
         directionalLight.position.set(1, 1, 1).normalize();
         scene.add(directionalLight);
 
-        // Cargar el modelo del maniquí (GLTF)
+        // Cargar el modelo del maniquí
         const loader = new THREE.GLTFLoader();
+        let mannequin, shirt;
+
         loader.load('Style/hombre/scene.gltf', function (gltf) {
-            const mannequin = gltf.scene;
-            mannequin.scale.set(3, 3, 3);  // Escalar si es necesario
+            mannequin = gltf.scene;
+            mannequin.scale.set(1, 1, 1);  // Ajustar la escala del maniquí si es necesario
             scene.add(mannequin);
 
-            // Animación del maniquí
-            function animate() {
-                requestAnimationFrame(animate);
+            // Después de cargar el maniquí, cargar la polera
+            loader.load('Style/polera/scene.gltf', function (gltfShirt) {
+                shirt = gltfShirt.scene;
+                shirt.scale.set(1, 1, 1);  // Ajustar la escala de la polera si es necesario
 
-                // Rotación del maniquí
-                //mannequin.rotation.y += 0.01;
-                controls.update(); //actualizar controles en cada frame
-                renderer.render(scene, camera);
-            }
-            animate();
+                // Ajustar la posición y rotación de la polera para que encaje en el maniquí
+                shirt.position.set(0, 0, 0);  // Ajustar si es necesario
+                shirt.rotation.set(0, 0, 0);  // Ajustar si es necesario
+
+                mannequin.add(shirt);  // Añadir la polera al maniquí
+            }, undefined, function (error) {
+                console.error('Error al cargar la polera:', error);
+            });
         }, undefined, function (error) {
-            console.error('Error al cargar el modelo del maniquí:', error);
+            console.error('Error al cargar el maniquí:', error);
         });
 
         // Posición de la cámara
