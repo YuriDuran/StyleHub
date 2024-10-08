@@ -39,7 +39,7 @@ require_once 'function.php'
 
         // Cargar el modelo del maniquí (GLTF)
         const loader = new THREE.GLTFLoader();
-        loader.load('Style/bob/scene.gltf', function (gltf) {
+        loader.load('Style/hombre/scene.gltf', function (gltf) {
             const mannequin = gltf.scene;
             mannequin.scale.set(0.1, 0.1, 0.1);  // Escalar si es necesario
             scene.add(mannequin);
