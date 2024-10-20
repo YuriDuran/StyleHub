@@ -16,11 +16,11 @@ require_once 'function.php'
             <div class="col-md-12 separador"></div>
 
             <div class="col-md-6">
-                <p>Filtros</p>
+                <p class="filtro">Filtros</p>
             </div>
 
-            <div class="col-md-6">
-                <p>Ordenar por</p>
+            <div class="col-md-6 text-end">
+                <p class="ordenar">Ordenar por</p>
             </div>
 
             <div class="col-md-3 text-center">
@@ -42,9 +42,9 @@ require_once 'function.php'
             </div>
 
             <div class="col-md-3 text-center">
-                <img src="img/polera-mujer3.png" class="imagenC">
-                <h5>Polera Frankestein Mujer Oversize</h5>
-                <p>$15.990</p>
+                <img src="img/polera-mujer4.png" class="imagenC">
+                <h5>Polera basica celeste</h5>
+                <p>$9.990</p>
             </div>
 
             <!-- Separador de pagina -->
