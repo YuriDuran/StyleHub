@@ -2,7 +2,7 @@
 $SERVER = "localhost";
 $user = "root";
 $pass = "";
-$db = "stylehub";
+$db = "outfit";
 
 $conexion = new mysql($server, $user, $pass, $db);
 
