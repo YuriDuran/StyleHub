@@ -4,7 +4,7 @@ require_once 'function.php'
 <?php render_template('head'); ?>
 
 <body>
-    <?php render_template('header_est'); ?>
+    <?php render_template('Header2'); ?>
     <div class="container product-container">
 
         <div class="product-images text-center">

@@ -2,26 +2,15 @@ body {
     height: 100%;
 }
 
+
 /*! Aqui se encuentra el css del header */
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
     background-color: rgba(128, 128, 128, 0.5);
-    color: white;
-    height: 60px; /* Altura del header */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    opacity: 0;
 }
 
-
 .logo {
-    height: 50%;
-    
+    height: 100px;
+    width: 100px;
 }
 
 /*TODO Importar fuente */
