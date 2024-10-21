@@ -1,7 +1,7 @@
 <?php
 require_once 'function.php'
 ?>
-<?php render_template('head'); ?>
+<?php render_template('head', 'producto.css'); ?>
 
 <body>
     <?php render_template('Header2'); ?>
