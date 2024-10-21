@@ -8,6 +8,13 @@ require_once 'function.php'
     <div class="container-fluid">
         <!--Aqui se encuentra el header de la pagina -->
         <?php render_template('Header2'); ?>
+        <section class="hero container-fluid">
+            <div class="overlay"></div>
+            <div class="hero-text">
+                <h1>Novedades de Mujer</h1>
+                <p>Explora la nueva colección</p>
+            </div>
+        </section>
 
         <!--Aqui se encuentra el cuerpo de la pagina -->
         <main class="row">
@@ -27,24 +34,28 @@ require_once 'function.php'
                 <img src="img/polera-mujer.png" class="imagenC">
                 <h5>Polera rosada mujer</h5>
                 <p>$12.990</p>
+                <a href="producto.php" class="boton">Ver más...</a>
             </div>
 
             <div class="col-md-3 text-center">
                 <img src="img/polera-mujer2.png" class="imagenC">
                 <h5>Polera Rolling Stone Mujer</h5>
                 <p>$14.990</p>
+                <a href="producto.php" class="boton">Ver más...</a>
             </div>
-            
+                    
             <div class="col-md-3 text-center">
                 <img src="img/polera-mujer3.png" class="imagenC">
                 <h5>Polera Frankestein Mujer Oversize</h5>
                 <p>$15.990</p>
+                <a href="producto.php" class="boton">Ver más...</a>
             </div>
 
             <div class="col-md-3 text-center">
                 <img src="img/polera-mujer4.png" class="imagenC">
                 <h5>Polera basica celeste</h5>
                 <p>$9.990</p>
+                <a href="producto.php" class="boton">Ver más...</a>
             </div>
 
             <!-- Separador de pagina -->

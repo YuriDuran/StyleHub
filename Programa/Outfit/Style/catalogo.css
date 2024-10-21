@@ -16,7 +16,19 @@ body {
 
 /*! Aqui se encuentra el css del header */
 header {
-    background-color: rgba(128, 128, 128, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(131, 128, 128, 0.5);
+    color: white;
+    height: 100px; /* Altura del header */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+
 }
 
 .logo {
@@ -44,6 +56,20 @@ header {
     margin-right: 2rem;
 }
 
+.boton {
+    display: inline-block; /* Hace que el enlace se comporte como un botón */
+    padding: 5px 10px; /* Espaciado interno */
+    background-color: rgb(98, 98, 98); /* Color de fondo */
+    color: white; /* Color del texto */
+    text-decoration: none; /* Sin subrayado */
+    border-radius:3px; /* Bordes redondeados */
+    border: none; /* Sin borde */
+}
+
+.boton:hover {
+    background-color: rgb(162, 162, 162); /* Cambia el color al pasar el mouse */
+}
+
 /*! Aqui se encuentra el css del footer */
 footer {
     color: white;
@@ -51,9 +77,99 @@ footer {
     bottom: 0px;
     height: 44px;
     width: 100%;
-    background: rgba(128, 128, 128, 0.5);
+    background: rgba(131, 128, 128);
 }
 
 footer div .row .col-md-4 {
     margin-top: 10px;
 }
+
+
+
+/* ------------------------------------- Sección de la imagen de fondo --------------------------------------*/
+.hero {
+    position: relative;
+    background-image: url('../img/banner_mujer.avif'); /* Cambia esto por tu imagen */
+    height: 60vh; /* Ajusta la altura según necesites */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6%;
+}
+
+/* Capa oscura sobre la imagen */
+.hero .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.338); /* Oscurecimiento del fondo (50%) */
+    z-index: 1;
+    
+}
+
+/* Texto centrado sobre la imagen */
+.hero-text {
+    position: relative;
+    z-index: 2; /* Asegura que el texto esté sobre la capa oscura */
+    color: white;
+    text-align: center;
+}
+
+.hero-text h1 {
+    font-size: 3em;
+    margin: 0;
+}
+
+.hero-text p {
+    font-size: 1.5em;
+}
+
+/* ------------------------------------- fin --------------------------------------*/
+
+/* ------------------------------------- Sección de la imagen de fondo HOMBRE --------------------------------------*/
+.heroh {
+    position: relative;
+    background-image: url('../img/banner_hombre.jpg'); /* Cambia esto por tu imagen */
+    height: 60vh; /* Ajusta la altura según necesites */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6%;
+}
+
+/* Capa oscura sobre la imagen */
+.heroh .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.338); /* Oscurecimiento del fondo (50%) */
+    z-index: 1;
+    
+}
+
+/* Texto centrado sobre la imagen */
+.hero-texth {
+    position: relative;
+    z-index: 2; /* Asegura que el texto esté sobre la capa oscura */
+    color: white;
+    text-align: center;
+}
+
+.hero-texth h1 {
+    font-size: 3em;
+    margin: 0;
+}
+
+.hero-texth p {
+    font-size: 1.5em;
+}
+
+/* ------------------------------------- fin --------------------------------------*/

@@ -5,9 +5,9 @@
 
     <div class="col-md-4">
         <div class="row text-center">
-            <div class="col-md-4"> Mujer </div>
-            <div class="col-md-4"> Hombre </div>
-            <div class="col-md-4"> Niñex </div>
+            <a href="catalogoM.php" style="color:#fff" class="col-md-4"> Mujer </a>
+            <a href="catalogoH.php" style="color:#fff" class="col-md-4"> Hombre </a>
+            <a class="col-md-4" style="color:#fff"> Niñex </a>
         </div>
     </div>
 

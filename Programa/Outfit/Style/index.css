@@ -20,7 +20,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(128, 128, 128, 0.5);
+    background-color: rgba(131, 128, 128, 0.789);
     color: white;
     height: 60px; /* Altura del header */
     display: flex;
@@ -102,12 +102,26 @@ main {
     height: 350px;
 }
 
+.sos{
+    background-color: rgba(164, 164, 164, 0.093);
+    padding-bottom: 3%;
+}
+.sos2{
+    background-color: rgba(164, 164, 164, 0.093);
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
 .destacado {
     height: 350px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+.ordenar{
+    font-weight: bold;
+    margin-right: 2rem;
+}
+
 
 .destacado img {
     max-height: 100%;
@@ -126,7 +140,7 @@ footer {
     bottom: 0px;
     height: 44px;
     width: 100%;
-    background: rgba(128, 128, 128, 0.5);
+    background: rgb(131, 128, 128);
 }
 
 footer div .row .col-md-4 {
