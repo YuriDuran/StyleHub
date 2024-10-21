@@ -7,7 +7,7 @@ require_once 'function.php'
 <body class="fondoT">
     <div class="container-fluid">
         <!-- Aqui se encuentra el header de la pagina -->
-        <?php render_template('Header'); ?>
+        <?php render_template('Header2'); ?>
 
         <!-- Aqui se encuentra el cuerpo de la pagina -->
         <main class="row ">
