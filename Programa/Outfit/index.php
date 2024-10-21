@@ -17,14 +17,17 @@ require_once 'function.php'
                 </div>
             </div>
 
-            <div class="col-md-4 text-center">
+            <div class="col-md-3 text-center">
                 <a href="cargar_producto.php">Cargar producto</a>
             </div>
-            <div class="col-md-4 text-center">
+            <div class="col-md-3 text-center">
                 <a href="render.php">render</a>
             </div>
-            <div class="col-md-4 text-center">
+            <div class="col-md-3 text-center">
                 <a href="catalogo.php">catalogo</a>
+            </div>
+            <div class="col-md-3 text-center">
+                <a href="producto.php">sos</a>
             </div>
 
             <!-- Separador de pagina -->
