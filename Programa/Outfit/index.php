@@ -27,7 +27,7 @@ require_once 'function.php'
                 <a href="catalogo.php">catalogo</a>
             </div>
             <div class="col-md-3 text-center">
-                <a href="producto.php">sos</a>
+                <a href="producto.php">producto</a>
             </div>
 
             <!-- Separador de pagina -->
