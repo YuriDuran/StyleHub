@@ -1,0 +1,11 @@
+Model Information:
+* title:	Cloth Ani
+* source:	https://sketchfab.com/3d-models/cloth-ani-fbb35fe0e64b473380949b279230ca18
+* author:	ankit73 (https://sketchfab.com/ankit73)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Cloth Ani" (https://sketchfab.com/3d-models/cloth-ani-fbb35fe0e64b473380949b279230ca18) by ankit73 (https://sketchfab.com/ankit73) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
