@@ -1,5 +1,5 @@
 <header>
-    <div class="text-center">
-        <a href="../index.php"><img src="img/StyleHubLogo.png" class="logo"></a>
+    <div class="text-center logo-small" id="logo-small">
+        <a href="index.php"><img src="img/StyleHubLogo.png" class="Logo Pequeño"></a>
     </div>
 </header>
