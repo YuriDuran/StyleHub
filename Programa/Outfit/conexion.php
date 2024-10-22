@@ -1,15 +1,13 @@
 <?php
-$SERVER = "localhost";
-$user = "root";
-$pass = "";
-$db = "outfit";
+$servidor = "localhost";
+$usuario = "root";
+$contrasena = "";
+$basedatos = "outfit";
 
-$conexion = new mysql($server, $user, $pass, $db);
+// Corregir la creación de la conexión
+$conexion = new mysqli($servidor, $usuario, $contrasena, $basedatos);
 
 if ($conexion->connect_errno) {
-    die("Conexion Fallida". $conexion->connect_errno);
-} else {
-    echo "conectado";
+    die("Conexión fallida: " . $conexion->connect_error);
 }
-
 ?>

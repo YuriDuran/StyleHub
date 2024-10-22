@@ -1,6 +1,35 @@
 <?php
-require_once 'function.php'
+require_once 'function.php';
+require_once 'conexion.php';
+
+// Procesar el formulario cuando se envía
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nombre = $_POST['nombre'];
+    $descripcion = $_POST['descripcion'];
+    $precio = $_POST['precio'];
+    $categoria = $_POST['categoria'];
+    
+    $color = $_POST['color'];
+    
+    $imagenes = [
+        'frontal' => $_FILES['imagenF'],
+        'derecha' => $_FILES['imagenD'],
+        'izquierda' => $_FILES['imagenI'],
+        'trasera' => $_FILES['imagenT']
+    ];
+
+    if (guardarProducto($conexion, $nombre, $categoria, $precio, $color, $descripcion, $imagenes)) {
+        echo "<script>alert('Producto guardado con éxito');</script>";
+    } else {
+        echo "<script>alert('Error al guardar el producto');</script>";
+    }
+}
+
+// Consulta para obtener las categorías
+$query = "SELECT id_categoria, nombre_categoria FROM categorias";
+$resultado = $conexion->query($query);
 ?>
+
 <!-- Aqui se encuentra el head de html de la pagina -->
 <?php render_template('head', 'cargar_producto.css'); ?>
 
@@ -21,21 +50,25 @@ require_once 'function.php'
                 <h3 class="text-center">Creacion de producto</h3>
                 <form action="">
                     <div class="row">
+                        <!-- Nombre del prodcuto -->
                         <div class="col-md-6">
                             <label for="name" class="form-label">Nombre del producto</label>
                             <input type="text" class="form-control" placeholder="Ej: Polera estampada" required>
                         </div>
+                        <!-- Categoria del producto -->
                         <div class="col-md-6">
                             <label for="categoria" class="form-label">Categoria del producto</label>
                             <select name="categoria" id="categoria" class="form-select" required>
-                                <option value="">Elegir categoria...</option>
-                                <option value="1">Polera</option>
-                                <option value="2">Camisa</option>
-                                <option value="3">Pantalon</option>
-                                <option value="4">Jeans</option>
-                                <option value="5">Short</option>
-                                <option value="6">Zapatillas</option>
-                                <option value="7">Zapatos</option>
+                                <option value="">Elegir categoría...</option>
+                                <?php
+                                // Llenar el select con las categorías
+                                while ($fila = mysqli_fetch_assoc($resultado)) {
+                                    echo "<option value='" . $fila['id_categoria'] . "'>" . $fila['nombre_categoria'] . "</option>";
+                                }
+                                ?>
+                                <?php
+                                mysqli_close($conexion);
+                                ?>
                             </select>
                         </div>
                         <div class="col-md-6">
