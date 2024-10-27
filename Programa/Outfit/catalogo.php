@@ -5,13 +5,20 @@ require_once 'function.php'
 <?php render_template('head', 'catalogo.css'); ?>
 
 <body>
+    <?php
+    include("conexion.php");
+
+    $sql = "SELECT * FROM productos";
+    $resultado = mysqli_query($conexion, $sql);
+    ?>
+
     <div class="container-fluid">
         <!--Aqui se encuentra el header de la pagina -->
         <?php render_template('Header2'); ?>
 
         <!--Aqui se encuentra el cuerpo de la pagina -->
         <main class="row">
-            
+
             <!-- Separador de pagina -->
             <div class="col-md-12 separador"></div>
 
@@ -23,29 +30,15 @@ require_once 'function.php'
                 <p class="ordenar">Ordenar por</p>
             </div>
 
-            <div class="col-md-3 text-center">
-                <img src="img/polera-mujer.png" class="imagenC">
-                <h5>Polera rosada mujer</h5>
-                <p>$12.990</p>
-            </div>
+            <?php while($filas = mysqli_fetch_assoc($resultado)){ ?>
 
             <div class="col-md-3 text-center">
-                <img src="img/polera-mujer2.png" class="imagenC">
-                <h5>Polera Rolling Stone Mujer</h5>
-                <p>$14.990</p>
+                <img src="<?php echo $filas['imagenF'] ?>" class="imagenC">
+                <h5><?php echo $filas['nombre'] ?></h5>
+                <p><?php echo $filas['precio'] ?></p>
             </div>
             
-            <div class="col-md-3 text-center">
-                <img src="img/polera-mujer3.png" class="imagenC">
-                <h5>Polera Frankestein Mujer Oversize</h5>
-                <p>$15.990</p>
-            </div>
-
-            <div class="col-md-3 text-center">
-                <img src="img/polera-mujer4.png" class="imagenC">
-                <h5>Polera basica celeste</h5>
-                <p>$9.990</p>
-            </div>
+            <?php } ?>
 
             <!-- Separador de pagina -->
             <div class="col-md-12 separador"></div>
