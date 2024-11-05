@@ -28,6 +28,7 @@ if (isset($_POST['correo']) && isset($_POST['pass'])) {
                 $_SESSION['correo'] = $row['correo'];
                 $_SESSION['nombre'] = $row['nombre'];
                 $_SESSION['id_usuario'] = $row['id_usuario'];
+                $_SESSION['tip_usuario'] = $row['tip_usuario'];
                 echo '
                 <script>
                 alert("Inicio de sesion exitoso");

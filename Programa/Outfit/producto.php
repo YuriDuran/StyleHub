@@ -4,19 +4,29 @@ require_once 'function.php'
 <?php render_template('head', 'producto.css'); ?>
 
 <body>
-    <?php render_template('Header2'); ?>
-    <div class="container product-container">
+    <?php
+    include("conexion.php");
 
+    $sql = "SELECT * FROM productos";
+    $resultado = mysqli_query($conexion, $sql);
+    ?>
+
+    <?php render_template('Header2'); ?>
+    
+    <div class="container product-container">
+        <?php while($filas = mysqli_fetch_assoc($resultado)){ ?>
         <div class="product-images text-center">
-            <img src="img/polera-mujer.png" alt="img1" class="image">
-            <img src="img/polera-mujer.png" alt="img2" class="image">
+            <img src="<?php echo $filas['imagenF'] ?>" alt="img1" class="image">
+            <img src="<?php echo $filas['imagenD'] ?>" alt="img2" class="image">
         </div>
+
+        
         <div class="product-info">
-            <h1>Nombre del Producto</h1>
-            <p>Descripción breve del producto.</p>
+            <h1><?php echo $filas['nombre'] ?></h1>
+            <p><?php echo $filas['descripcion'] ?></p>
             <button>Añadir al Carrito</button>
         </div>
-        
+        <?php } ?>
     </div>
     
     <div class="container-fluid">

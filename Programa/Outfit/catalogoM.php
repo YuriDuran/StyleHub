@@ -30,12 +30,17 @@ require_once 'function.php'
                 <p class="ordenar">Ordenar por</p>
             </div>
 
+            <?php while($filas = mysqli_fetch_assoc($resultado)){ ?>
+
             <div class="col-md-3 text-center">
-                <img src="img/polera-mujer.png" class="imagenC">
-                <h5>Polera rosada mujer</h5>
-                <p>$12.990</p>
+                <img src="<?php echo $filas['imagenF'] ?>" class="imagenC">
+                <h5><?php echo $filas['nombre'] ?></h5>
+                <p><?php echo $filas['precio'] ?></p>
                 <a href="producto.php" class="boton">Ver más...</a>
+                
             </div>
+
+            <?php } ?>
 
             <div class="col-md-3 text-center">
                 <img src="img/polera-mujer2.png" class="imagenC">
