@@ -9,7 +9,7 @@
 
 
 body {
-    background: url(../img/banner_mujer.avif) top center;
+    background: url(../img/sos/fondoinicio.jpg) top center;
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center;
@@ -123,7 +123,7 @@ a.forgot {
 button {
     border-radius: 20px;
     border: 1px solid var(--grad-clr1);
-    background: black;
+    background: rgb(0, 0, 0);
     color: #fff;
     font-size: 12px;
     font-weight: bold;
@@ -134,8 +134,8 @@ button {
 }
 
 button:hover {
-    background: rgba(255, 184, 0, 1);
-    color: #fff;
+    background: rgb(177, 177, 177);
+    color: #000000;
 }
 
 .form-container button {
@@ -174,7 +174,7 @@ button:hover {
 .overlay {
     position: relative;
     background: black;
-    color: rgba(255, 184, 0, 1);
+    color: rgb(255, 255, 255);
     left: -150%;
     height: 100%;
     width: 250%;

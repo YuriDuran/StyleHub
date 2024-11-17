@@ -32,9 +32,9 @@ window.addEventListener('scroll', function() {
 // Carrusel de imágenes de fondo
 let currentImageIndex = 0;
 const backgroundImages = [
-    '/img/prueba.jpg',   // Primera imagen
-    '/img/mujer_posando.jpg',  // Segunda imagen
-    '/img/foto_principal.jpg'   // Tercera imagen
+    'img/prueba.jpg',   // Primera imagen
+    'img/mujer_posando.jpg',  // Segunda imagen
+    'img/foto_principal.jpg',   // Tercera imagen
 ];
 
 const heroImage = document.querySelector('.hero-image');

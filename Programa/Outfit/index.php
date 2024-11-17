@@ -11,7 +11,7 @@ require_once 'function.php'
         <!--Aqui se encuentra el cuerpo de la pagina -->
         <main class="row">
             <!-- Aqui se encuentra el banner de la pagina principal -->
-            <div class="hero-image">
+            <div class="hero-image container-fluid">
                 <div class="hero-logo" id="logo-large">
                     <img src="img/StyleHubLogo.png" alt="Logo Grande">
                 </div>

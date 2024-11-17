@@ -1,12 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión || Regístrese desde</title>
+    <link rel="icon" href="https://www.puntosaber.cl/logo/punto.png" alt="Icono pestaña">
+
+    <!-- font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- css stylesheet -->
+    <link rel="stylesheet" href="style/loginregister.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
 <?php
-require_once 'function.php'
+require_once 'function.php';
+require_once 'conexion.php';
 ?>
-<!-- Aqui se encuentra el head de html de la pagina -->
-<?php render_template('head', 'loginregister.css'); ?>
-
-
 
 <body>
+
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <form action="logica/crearcuenta.php" method="POST">
@@ -37,8 +53,8 @@ require_once 'function.php'
         </div>
 
         <div class="form-container sign-in-container">
-            <form action="logica/login.php" method="POST">
-                <img src="" style="width: 250px;height: 150px;">
+        <form action="logica/inicio_sesion.php" method="POST">
+                <img src="img/StyleHubLogo.png" style="width: 150px;height: 150px;">
                 <div class="social-container">
                     <a href="#" class="social"><i class="fa fa-facebook"></i></a>
                     <a href="#" class="social"><i class="fa fa-google-plus"></i></a>
@@ -46,15 +62,15 @@ require_once 'function.php'
                 </div>
                 <h5>Iniciar sesion</h5>
                 <div class="infield">
-                    <input type="email" required placeholder="Email admin@gmail.com o user@gmail.com" name="email" autocomplete="off">
+                    <input type="email" name="correo"  required placeholder="Email admin@gmail.com o user@gmail.com" name="email" autocomplete="off">
                     <label></label>
                 </div>
                 <div class="infield">
-                    <input type="password" required placeholder="Contraseña '12345'" name="password" autocomplete="off">
+                    <input type="password" name="pass" required placeholder="Contraseña '12345'" name="password" autocomplete="off">
                     <label></label>
                 </div>
                 <a href="recuperarcuenta.php" class="forgot">¿Olvidaste tu contraseña?</a>
-                <button>Iniciar sesión</button>
+                <button type="submit">Iniciar sesión</button>
             </form>
         </div>
 

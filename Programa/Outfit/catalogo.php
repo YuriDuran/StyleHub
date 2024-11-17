@@ -36,9 +36,9 @@ require_once 'function.php'
                 <img src="<?php echo $filas['imagenF'] ?>" class="imagenC">
                 <h5><?php echo $filas['nombre'] ?></h5>
                 <p><?php echo $filas['precio'] ?></p>
-                
-               
+                <a href="producto.php?id=<?php echo $filas['id_producto'] ?>" class="boton">Ver más...</a>
             </div>
+               
             
             <?php } ?>
 

@@ -5,10 +5,13 @@ require_once 'function.php'
 
 <body>
     <?php
-    include("conexion.php");
 
-    $sql = "SELECT * FROM productos";
+    include("conexion.php");
+    $id = $_GET['id'];
+
+    $sql ="SELECT * FROM productos WHERE id_producto =" . $id;
     $resultado = mysqli_query($conexion, $sql);
+
     ?>
 
     <?php render_template('Header2'); ?>
@@ -20,13 +23,13 @@ require_once 'function.php'
             <img src="<?php echo $filas['imagenD'] ?>" alt="img2" class="image">
         </div>
 
-        
         <div class="product-info">
             <h1><?php echo $filas['nombre'] ?></h1>
             <p><?php echo $filas['descripcion'] ?></p>
             <button>Añadir al Carrito</button>
         </div>
         <?php } ?>
+
     </div>
     
     <div class="container-fluid">
