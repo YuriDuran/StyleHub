@@ -77,6 +77,14 @@ $resultado = $conexion->query($query);
                             <label for="talla" class="form-label">Talla del producto</label>
                             <input type="text" id="talla" name="talla" class="form-control" required>
                         </div>
+                        <div class="col-md-6">
+                            <label for="genero" class="form-label">Genero del producto</label>
+                            <select name="genero" id="genero" class="form-select" required>
+                                <option value="">Elegir genero...</option>
+                                <option value="mujer">Mujer</option>
+                                <option value="hombre">Hombre</option>
+                            </select>
+                        </div>
                         <!-- Descripcion del producto -->
                         <div class="col-md-12">
                             <label for="descripcion" class="form-label">Descripcion</label>

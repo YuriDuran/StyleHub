@@ -37,7 +37,7 @@ require_once 'function.php';
         // Cargar el modelo del maniquí
         const loader = new THREE.GLTFLoader();
         let mannequin;
-        loader.load('Style/hombre/scene.gltf', function (gltf) {
+        loader.load('img/Camisa/Camisa.glb', function (gltf) {
             mannequin = gltf.scene;
             mannequin.scale.set(1, 1, 1);
             mannequin.position.y = -1;  // Asegurar que el maniquí esté en la posición correcta

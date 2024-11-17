@@ -27,7 +27,7 @@ require_once 'function.php'
                 <a href="catalogo.php">catalogo</a>
             </div>
             <div class="col-md-3 text-center">
-                <a href="producto.php">producto</a>
+                <a href="pruebaCargaFoto.php">prueba 3000</a>
             </div>
 
             <!-- Separador de pagina -->
@@ -44,6 +44,7 @@ require_once 'function.php'
 
             <!-- Separador de pagina -->
             <div class="col-md-12 separador"></div>
+        
         </main>
 
         <!--Aqui se encuentra el footer de la pagina -->
