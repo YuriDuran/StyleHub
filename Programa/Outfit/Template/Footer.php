@@ -21,11 +21,13 @@
             elseif (isset($_SESSION['nombre']) && $_SESSION['tip_usuario'] == 2) {
                 $si = "col-md-3";
                 $cerrar = "logica/cerrar_sesion.php";
-                $administracion = "administracion.php";
+                $administracion = "vistas_admin/pag_principal_a.php";
+                $id = $_SESSION['id_usuario']; // Asegúrate de que la ID esté guardada en la sesión
+
                 // Mostrar contenido si el usuario ha iniciado sesión
-                echo "<a href=". $cerrar ." class=". $si .">administracion</a>";
-                echo "<a href=". $cerrar ." class=". $si .">Cerrar sesion</a>";
-            }
+                echo "<a href='". $administracion ."?id=". $id ."' class='". $si ."'>Administración</a>";
+                echo "<a href='". $cerrar ."' class='". $si ."'>Cerrar sesión</a>";
+}
             else {
                 ?>
                 <a href="inicio_sesion.php" style="color:#fff" class="col-md-3">inicio de sesion</a>
