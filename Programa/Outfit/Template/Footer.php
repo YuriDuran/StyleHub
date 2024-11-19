@@ -30,8 +30,8 @@ $h = "hombre";
                 $style = "color:#fff; text-decoration:none;";
                 $administracion = "administracion.php";
                 // Mostrar contenido si el usuario ha iniciado sesión
-                echo "<a href=". $administracion ." class=". $si ." style=".$style.">administracion</a>";
-                echo "<a href=". $cerrar ." class=". $si ." style=".$style.">Cerrar sesion</a>";
+                echo "<a href='". $administracion ."?id=". $id ."' class='". $si ."'>Administración</a>";
+                echo "<a href='". $cerrar ."' class='". $si ."'>Cerrar sesión</a>";
             }
             else {
                 ?>
