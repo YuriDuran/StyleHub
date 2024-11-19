@@ -11,7 +11,7 @@ header {
     width: 100%;
     background-color: rgba(128, 128, 128, 0.5);
     color: white;
-    height: 60px; /* Altura del header */
+    height: 100px; /* Altura del header */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,8 +21,8 @@ header {
 }
 
 .logo {
-    width: 40px; /* Tamaño pequeño del logo en el header */
-    height: auto;
+    height: 100px;
+    width: 100px;
 }
 
 /*TODO Importar fuente */

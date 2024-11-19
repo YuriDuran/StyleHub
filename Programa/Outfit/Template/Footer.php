@@ -5,8 +5,8 @@
 
     <div class="col-md-8">
         <div class="row text-center">
-            <a href="catalogoM.php" style="color:#fff" class="col-md-3 btn"> Mujer </a>
-            <a href="catalogoH.php" style="color:#fff" class="col-md-3 btn"> Hombre </a>
+            <a href="catalogoM.php" style="color:#fff" class="col-md-3"> Mujer </a>
+            <a href="catalogoH.php" style="color:#fff" class="col-md-3"> Hombre </a>
             <?php
             session_start(); // Asegúrate de tener esto al principio de tu archivo PHP
 
@@ -18,7 +18,7 @@
                 echo "<p class=". $si .">Bienvenido, " . htmlspecialchars($_SESSION['nombre']) . "</p>";
                 echo "<a href=". $cerrar ." class=". $si .">Cerrar sesion</a>";
             } 
-            elseif (isset($_SESSION['nombre']) && $_SESSION['tip_usuario'] == 2) {
+            elseif (isset($_SESSION['nombre']) && $_SESSION['tip_usuario'] == 3) {
                 $si = "col-md-3";
                 $cerrar = "logica/cerrar_sesion.php";
                 $administracion = "administracion.php";
@@ -28,9 +28,9 @@
             }
             else {
                 ?>
-                <a href="inicio_sesion.php" style="color:#fff" class="col-md-3 btn">inicio de sesion</a>
+                <a href="inicio_sesion.php" style="color:#fff" class="col-md-3">inicio de sesion</a>
 
-                <a href="iniciar.php" style="color:#fff" class="col-md-3 btn"> prueba </a>
+                <a href="iniciar.php" style="color:#fff" class="col-md-3"> prueba </a>
                 <?php
             }
             ?>

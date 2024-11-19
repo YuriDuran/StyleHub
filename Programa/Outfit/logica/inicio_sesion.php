@@ -39,8 +39,8 @@ if (isset($_POST['correo']) && isset($_POST['pass'])) {
             } else {
                 echo '
                 <script>
-                alert("Correo o Clave incorrecta o");
-                location.href = "../index.php"
+                alert("Correo o Clave incorrecta");
+                location.href = "../inicio_sesion.php"
                 </script>
                 ';
                 exit();
@@ -48,8 +48,8 @@ if (isset($_POST['correo']) && isset($_POST['pass'])) {
         } else {
             echo '
             <script>
-            alert("Correo o Clave incorrecta aqui");
-            location.href = "../index.php"
+            alert("Correo o Clave incorrecta");
+            location.href = "../inicio_sesion.php"
             </script>
             ';
             exit();

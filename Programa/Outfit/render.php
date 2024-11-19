@@ -1,7 +1,20 @@
 <?php
 require_once 'function.php';
+require 'conexion.php';
+
+// Obtener el ID del producto
+$id_producto = '5';
+$query = "SELECT modelo FROM productos WHERE id_producto = " . $id_producto;
+$stmt = $conexion->prepare($query);
+$stmt->bind_param("s", $id_producto);
+$stmt->execute();
+$stmt->store_result();
+$stmt->bind_result($modelo);
+$stmt->fetch();
 ?>
 <?php render_template('head'); ?>
+
+
 
 <body>
     <div class="container-fluid">
@@ -34,14 +47,19 @@ require_once 'function.php';
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
         scene.add(ambientLight);
 
-        // Cargar el modelo del maniquí
+        // Cargar el modelo desde la base de datos
         const loader = new THREE.GLTFLoader();
         let mannequin;
-        loader.load('img/Camisa/Camisa.glb', function (gltf) {
+
+        <?php while ($filas = mysqli_fetch_assoc($resultado)) { ?>
+        loader.load('<?php echo $modelo; ?>', function (gltf) {
+            <?php } ?>
             mannequin = gltf.scene;
             mannequin.scale.set(1, 1, 1);
-            mannequin.position.y = -1;  // Asegurar que el maniquí esté en la posición correcta
+            mannequin.position.y = -1;
             scene.add(mannequin);
+        }, undefined, function (error) {
+            console.error('Error cargando el modelo:', error);
         });
 
         // Control de la cámara

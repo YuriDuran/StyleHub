@@ -8,13 +8,6 @@
     <title>Iniciar sesión || Regístrese desde</title>
     <link rel="icon" href="https://www.puntosaber.cl/logo/punto.png" alt="Icono pestaña">
 
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
-
-    
-
     <!-- font awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- css stylesheet -->
@@ -32,86 +25,30 @@ require_once 'conexion.php';
 
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form class="formulario" id="formulario">
-
-                <!-- GRUPO NOMBRE-->
-                <div class="infield formulario__grupo" id="grupo__nombre">
-
-                    <div class="formulario__grupo-input">
-                        <input type="text" required class="form-control formulario__input" name="nombre" id="nombre"
-                        placeholder="Nombre/s">
-
-                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
-
-                    </div>
-                    <h5 class="formulario__input-error">Solo puede contener letras.</h5>
+            <form action="logica/crearcuenta.php" method="POST">
+                <h1>Crear una cuenta</h1>
+                <span>use su correo electrónico de la institución</span>
+                <div class="infield">
+                    <input type="text" placeholder="Nombres" name="nombre" autocomplete="on" required>
+                    <label></label>
                 </div>
-
-                <div class="infield formulario__grupo" id="grupo__ap1">
-               
-                    <div class="formulario__grupo-input">
-                        <input type="text" required class="form-control formulario__input" name="apellido1" id="apellido1"
-                        placeholder="Primer Apellido">
-                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                    </div>
-                    <h5 class="formulario__input-error">Solo puede contener letras.</h5>
+                <div class="infield">
+                    <input type="text" placeholder="Apellidos" name="apellido" autocomplete="off" required>
+                    <label></label>
                 </div>
-
-
-
-
-
-
-
-
-                <div class="infield formulario__grupo" id="grupo__email">
-               
-                    <div class="formulario__grupo-input">
-                        <input type="email" required class="formulario__input" name="email" id="email" placeholder="hola@hola.com">
-                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                    </div>
-                    <h5 class="formulario__input-error">Ta mal</h5>
-                    </div>
-                    <div class="col-md-6">
-
+                <div class="infield">
+                    <input type="email" placeholder="Email" name="correo" autocomplete="on" required>
+                    <label></label>
                 </div>
-
-
-                <div class="infield formulario__grupo" id="grupo__password">
-                  
-                    <div class="formulario__grupo-input">
-                        <input type="password" required class="formulario__input" name="con1" id="con1" placeholder="Contraseña">
-                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                    </div>
-                    <h5 class="formulario__input-error">Ta mal solo son entre 4 y 9 dígitos</h5>
+                <div class="infield">
+                    <input type="password" placeholder="Contraseña" min="6" name="pass" autocomplete="on" required>
+                    <label></label>
                 </div>
-
-                <div class="infield formulario__grupo" id="grupo__password2">
-                    <label for="inputPassword2" class="formulario__label"></label>
-                    <div class="formulario__grupo-input">
-                        <input type="password" required class="formulario__input" name="con2" id="con2"
-                        placeholder="Repitir Contraseña">
-                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                    </div>
-                    <h5 class="formulario__input-error">Ambas contraseñas deben ser iguales...</h5>
+                <div class="infield">
+                    <input type="password" name="valpass" min="6" placeholder="Repetir Contraseña" autocomplete="off" required>
+                    <label></label>
                 </div>
-
-
-
-           
-
-                <div class="formulario__mensaje" id="formulario__mensaje">
-                    <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente.
-                    </p>
-                </div>
-
-                <div class="formulario__grupo formulario__grupo-btn-enviar">
-                    <button type="submit" class="formulario__btn">Enviar</button>
-                    <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
-                </div>
-
-
-
+                <button>Inscribirse</button>
             </form>
         </div>
 
@@ -168,9 +105,161 @@ require_once 'conexion.php';
             })
         });
     </script>
-    <script src="js/registro.js"></script>
 
 </body>
+<!-- Mostrar alertas -->
+<?php if (isset($_GET['inactive'])) : ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Cuenta no verificada',
+                text: 'Aún no ha activado su cuenta. Por favor, verifique su correo electrónico para activarla.',
+                icon: 'error',
+                confirmButtonColor: '#007bff',
+                confirmButtonText: 'Salir'
+            }).then(() => {
+                window.location.href = 'iniciar.php';
+            });
+        });
+    </script>
+<?php endif; ?>
+<?php if (isset($_GET['clave'])) : ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
 
+            Swal.fire({
+                title: 'Error de contraseñas',
+                text: 'Las contraseñas no coinciden',
+                icon: 'error',
+                confirmButtonColor: '#007bff',
+                confirmButtonText: 'Salir'
+            }).then(() => {
+                window.location.href = 'iniciar.php';
+            });
+        });
+    </script>
+<?php endif; ?>
+
+<?php if (isset($_GET['error'])) : ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Usuario no existe',
+                text: 'No existe una cuenta con este correo',
+                icon: 'info',
+                confirmButtonColor: '#007bff',
+                confirmButtonText: 'Salir'
+            }).then(() => {
+                window.location.href = 'iniciar.php';
+            });
+        });
+    </script>
+<?php endif; ?>
+<?php if (isset($_GET['claveinco'])) : ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            Swal.fire({
+                title: 'Contraseña incorrecta',
+                text: 'Intente nuevamente',
+                icon: 'error',
+                confirmButtonColor: '#007bff',
+                confirmButtonText: 'Salir'
+            }).then(() => {
+                window.location.href = 'iniciar.php';
+            });
+        });
+    </script>
+<?php endif; ?>
+<?php if (isset($_GET['creado'])) : ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Usuario creado',
+                text: 'Se registro el usuario exitosamente, active su cuenta',
+                icon: 'success',
+                confirmButtonColor: '#007bff',
+                confirmButtonText: 'Salir'
+            }).then(() => {
+                window.location.href = 'iniciar.php';
+            });
+        });
+    </script>
+<?php endif; ?>
+<?php if (isset($_GET['existe'])) : ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'El correo existe',
+                text: 'El correo utilizado ya tiene una cuenta registrada',
+                icon: 'error',
+                confirmButtonColor: '#007bff',
+                confirmButtonText: 'Salir'
+            }).then(() => {
+                window.location.href = 'iniciar.php';
+            });
+        });
+    </script>
+<?php endif; ?>
+<?php if (isset($_GET['correo'])) : ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'El correo no valido',
+                text: 'El correo ingresado no corresponde a un correo institucional',
+                icon: 'error',
+                confirmButtonColor: '#007bff',
+                confirmButtonText: 'Salir'
+            }).then(() => {
+                window.location.href = 'iniciar.php';
+            });
+        });
+    </script>
+<?php endif; ?>
+<?php if (isset($_GET['correoCorrecto'])) : ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Envio exitoso',
+                text: 'El envio del correo para restablecer su contraseña fue enviado exitosamente.',
+                icon: 'success',
+                confirmButtonColor: '#007bff',
+                confirmButtonText: 'Salir'
+            }).then(() => {
+                window.location.href = 'iniciar.php';
+            });
+        });
+    </script>
+<?php endif; ?>
+<?php if (isset($_GET['errorCorreo'])) : ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'El correo no valido',
+                text: 'El correo ingresado no corresponde a un correo institucional',
+                icon: 'error',
+                confirmButtonColor: '#007bff',
+                confirmButtonText: 'Salir'
+            }).then(() => {
+                window.location.href = 'iniciar.php';
+            });
+        });
+    </script>
+<?php endif; ?>
+<?php if (isset($_GET['notCorreo'])) : ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'El correo no valido',
+                text: 'El correo ingresado no corresponde a un correo institucional',
+                icon: 'error',
+                confirmButtonColor: '#007bff',
+                confirmButtonText: 'Salir'
+            }).then(() => {
+                window.location.href = 'iniciar.php';
+            });
+        });
+    </script>
+<?php endif; ?>
 
 </html>
