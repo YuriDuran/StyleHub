@@ -16,19 +16,21 @@ require_once 'function.php'
                     <img src="img/StyleHubLogo.png" alt="Logo Grande">
                 </div>
             </div>
-
-            <div class="col-md-3 text-center">
-                <a href="cargar_producto.php">Cargar producto</a>
+        <div class="row text-center" style="padding: 50px;">
+             <div class="col-md-3 data-container">
+                <a class="btn btn-dark" href="cargar_producto.php">cargar producto</a>
             </div>
-            <div class="col-md-3 text-center">
-                <a href="render.php">render</a>
+            <div class="col-md-3 data-containe">
+                <a class="btn btn-dark" href="catalogo.php">catalogo</a>
             </div>
-            <div class="col-md-3 text-center">
-                <a href="catalogo.php">catalogo</a>
+            <div class="col-md-3 data-containe">
+                <a class="btn btn-dark" href="pruebaCargaFoto.php">prueba 3000</a>
             </div>
-            <div class="col-md-3 text-center">
-                <a href="pruebaCargaFoto.php">prueba 3000</a>
+            <div class="col-md-3 data-containe">
+                <a class="btn btn-dark" href="render.php">render</a>
             </div>
+        </div>
+           
 
             <!-- Separador de pagina -->
             <div class="col-md-12 separador"></div>

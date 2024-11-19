@@ -5,8 +5,8 @@
 
     <div class="col-md-8">
         <div class="row text-center">
-            <a href="catalogoM.php" style="color:#fff" class="col-md-3"> Mujer </a>
-            <a href="catalogoH.php" style="color:#fff" class="col-md-3"> Hombre </a>
+            <a href="catalogoM.php" style="color:#fff" class="col-md-3 btn"> Mujer </a>
+            <a href="catalogoH.php" style="color:#fff" class="col-md-3 btn"> Hombre </a>
             <?php
             session_start(); // Asegúrate de tener esto al principio de tu archivo PHP
 
@@ -21,18 +21,16 @@
             elseif (isset($_SESSION['nombre']) && $_SESSION['tip_usuario'] == 2) {
                 $si = "col-md-3";
                 $cerrar = "logica/cerrar_sesion.php";
-                $administracion = "vistas_admin/pag_principal_a.php";
-                $id = $_SESSION['id_usuario']; // Asegúrate de que la ID esté guardada en la sesión
-
+                $administracion = "administracion.php";
                 // Mostrar contenido si el usuario ha iniciado sesión
-                echo "<a href='". $administracion ."?id=". $id ."' class='". $si ."'>Administración</a>";
-                echo "<a href='". $cerrar ."' class='". $si ."'>Cerrar sesión</a>";
-}
+                echo "<a href=". $cerrar ." class=". $si .">administracion</a>";
+                echo "<a href=". $cerrar ." class=". $si .">Cerrar sesion</a>";
+            }
             else {
                 ?>
-                <a href="inicio_sesion.php" style="color:#fff" class="col-md-3">inicio de sesion</a>
+                <a href="inicio_sesion.php" style="color:#fff" class="col-md-3 btn">inicio de sesion</a>
 
-                <a href="iniciar.php" style="color:#fff" class="col-md-3"> prueba </a>
+                <a href="iniciar.php" style="color:#fff" class="col-md-3 btn"> prueba </a>
                 <?php
             }
             ?>
