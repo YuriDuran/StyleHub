@@ -7,7 +7,7 @@ require_once 'function.php'
     <div class="sidebar">
         <ul>
             <li class="logo">
-                <a href="#">
+                <a href="index.php">
                     <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                     <span class="text">StyleHub</span>
                 </a>

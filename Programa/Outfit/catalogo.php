@@ -1,5 +1,6 @@
 <?php
-require_once 'function.php'
+require_once 'function.php';
+$genero = $_GET['genero'];
 ?>
 <!-- Aqui se encuentra el head de html de la pagina -->
 <?php render_template('head', 'catalogo.css'); ?>
@@ -8,7 +9,7 @@ require_once 'function.php'
     <?php
     include("conexion.php");
 
-    $sql = "SELECT * FROM productos";
+    $sql = "SELECT * FROM productos WHERE estado = '2' && genero = '". $genero ."'";
     $resultado = mysqli_query($conexion, $sql);
     ?>
 

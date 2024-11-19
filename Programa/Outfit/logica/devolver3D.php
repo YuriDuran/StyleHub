@@ -69,11 +69,12 @@ if (isset($responseData['status'])) {
                 
                 // Guardar la ruta relativa en la base de datos
                 $rutaRelativa = "modelos3D/" . $id_producto . "/" . $fileName;
-                $query = "UPDATE productos SET ruta_modelo = ? WHERE id_producto = ?";
+                $query = "UPDATE productos SET modelo = ? WHERE id_producto = ?";
                 $stmt = $conexion->prepare($query);
                 $stmt->bind_param("ss", $rutaRelativa, $id_producto);
                 $stmt->execute();
                 $stmt->close();
+                header("Location: administracion.php");
             }
             break;
         case 'FAILED':

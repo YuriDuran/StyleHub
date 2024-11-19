@@ -3,14 +3,12 @@ require_once 'function.php';
 require 'conexion.php';
 
 // Obtener el ID del producto
-$id_producto = '5';
+$id_producto = $_GET['id'];
 $query = "SELECT modelo FROM productos WHERE id_producto = " . $id_producto;
-$stmt = $conexion->prepare($query);
-$stmt->bind_param("s", $id_producto);
-$stmt->execute();
-$stmt->store_result();
-$stmt->bind_result($modelo);
-$stmt->fetch();
+$resultado = $conexion->query($query);
+while ($fila = $resultado->fetch_assoc()) {
+    $render = $fila['modelo'];
+}
 ?>
 <?php render_template('head'); ?>
 
@@ -40,23 +38,22 @@ $stmt->fetch();
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer();
+        scene.background = new THREE.Color('#443730');
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
         // Añadir iluminación
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1);
         scene.add(ambientLight);
 
         // Cargar el modelo desde la base de datos
         const loader = new THREE.GLTFLoader();
         let mannequin;
 
-        <?php while ($filas = mysqli_fetch_assoc($resultado)) { ?>
-        loader.load('<?php echo $modelo; ?>', function (gltf) {
-            <?php } ?>
+        loader.load('<?php echo $render; ?>', function (gltf) {
             mannequin = gltf.scene;
-            mannequin.scale.set(1, 1, 1);
-            mannequin.position.y = -1;
+            mannequin.scale.set(2.0, 2.0, 2.0);
+            mannequin.position.y = 0;
             scene.add(mannequin);
         }, undefined, function (error) {
             console.error('Error cargando el modelo:', error);
@@ -84,9 +81,9 @@ $stmt->fetch();
         world.addBody(mannequinBody);
 
         // Simulación de la polera (aumentar resolución y ajustar parámetros)
-        const clothWidth = 9;  // Mayor resolución para mayor detalle
-        const clothHeight = 15; 
-        const particleSpacing = 0.06;  // Espaciado más pequeño para un ajuste más detallado
+        const clothWidth = 1;  // Mayor resolución para mayor detalle
+        const clothHeight = 1; 
+        const particleSpacing = 1;  // Espaciado más pequeño para un ajuste más detallado
         const particles = [];
 
         // Crear las partículas de la polera
@@ -101,32 +98,6 @@ $stmt->fetch();
                 world.addBody(particle);
                 particles.push(particle);
             }
-        }
-
-        // Conectar las partículas con resortes (simulación de tela)
-        function connectParticles(p1, p2) {
-            const distance = p1.position.distanceTo(p2.position);
-            const stiffness = 0.2;  // Ajustar la rigidez de los resortes
-            const constraint = new CANNON.DistanceConstraint(p1, p2, distance, stiffness); 
-            world.addConstraint(constraint);
-        }
-
-        // Conectar las partículas para la estructura de la polera
-        for (let i = 0; i < clothWidth; i++) {
-            for (let j = 0; j < clothHeight; j++) {
-                if (i < clothWidth - 1) {
-                    connectParticles(particles[i + j * clothWidth], particles[i + 1 + j * clothWidth]);
-                }
-                if (j < clothHeight - 1) {
-                    connectParticles(particles[i + j * clothWidth], particles[i + (j + 1) * clothWidth]);
-                }
-            }
-        }
-
-        // Fijar la primera fila de partículas al maniquí para que la polera esté ajustada
-        for (let i = 0; i < clothWidth; i++) {
-            const lockConstraint = new CANNON.LockConstraint(particles[i], mannequinBody);
-            world.addConstraint(lockConstraint);
         }
 
         // Crear la malla visual para la polera en Three.js
