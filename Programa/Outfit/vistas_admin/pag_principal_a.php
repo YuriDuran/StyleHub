@@ -47,7 +47,7 @@ require_once '../function.php';
     <div class="d-flex align-items-center justify-content-between">
         <i class="bi bi-list toggle-sidebar-btn"></i>
         <a href="{% url 'prinadmin' %}" class="logo d-flex align-items-center">
-            <img src="{% static 'Principal/img/admin/logo-ha.jpg' %}" alt="">
+            <img src="index.php" alt="">
             <span class="d-none d-lg-block tit-logo">Style<span class="text-blank tit-logo">Hub</span></span>
         </a>
 

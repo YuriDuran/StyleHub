@@ -22,7 +22,7 @@ header {
     width: 100%;
     background-color: rgba(131, 128, 128, 0.5);
     color: white;
-    height: 100px; /* Altura del header */
+    height: 60px; /* Altura del header */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,8 +32,9 @@ header {
 }
 
 .logo {
-    height: 100px;
-    width: 100px;
+    width: 40px; /* Tamaño pequeño del logo en el header */
+    height: auto;
+
 }
 
 /** Aqui se encuentra el css del cuerpo */
