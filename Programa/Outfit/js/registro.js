@@ -1,4 +1,4 @@
-
+/* 
 
 var url = "https://apis.digital.gob.cl/dpa/regiones";
 
@@ -57,7 +57,7 @@ fetch(url2).then(function (result) {
   })
 })
 
-
+*/
 
 
 /*validacion form*/
@@ -70,12 +70,13 @@ const expresiones = {
 	nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
 	password: /^.{4,12}$/, // 4 a 12 digitos.
 	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-	telefono: /^\d{8,9}$/ // 7 a 14 numeros.
+
+  direccion: /^.{4,20}$/, // 4 a 12 digitos.
 }
 const campos = {
   nombre: false,
   ap1: false,
- 
+  direccion: false,
   numero: false,
   email: false,
   password: false,
@@ -88,8 +89,8 @@ const validarFormulario = (e) => {
     break;
       
 
-    case "apellido1":
-      validarCampo(expresiones.nombre, e.target, 'ap1');
+    case "direccion":
+      validarCampo(expresiones.usuario, e.target, 'ap1');
     break;
 
     
@@ -158,12 +159,10 @@ inputs.forEach((input) => {
 
 
 formulario.addEventListener('submit', (e) => {
-  e.preventDefault();
+ 
 
-
-  const terminos = document.getElementById('terminos');
-  if(campos.nombre && campos.ap1 && campos.ap2 && campos.numero && campos.email && campos.password && terminos.checked ){
-    formulario.reset();
+  if(campos.nombre && campos.ap1 && campos.email && campos.password){
+  
 
     document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');
     setTimeout(() => {

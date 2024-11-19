@@ -1,5 +1,7 @@
 <?php
-require_once 'function.php'
+require_once 'function.php';
+require_once 'conexion.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +49,7 @@ require_once 'function.php'
         <div class="form-section">
           <div class="form-container">
             <h2>Registro</h2>
-                <form class="formulario" id="formulario">
+                <form action="logica/crearcuentapyme.php" method="POST" class="formulario" id="formulario"  enctype="multipart/form-data">
 
                   <!-- GRUPO NOMBRE-->
                   <div class=" formulario__grupo" id="grupo__nombre">
@@ -63,10 +65,10 @@ require_once 'function.php'
                   </div>
 
                   <div class=" formulario__grupo" id="grupo__ap1">
-                    <label for="ap1" class="formulario__label">Primer Apellido:</label>
+                    <label for="ap1" class="formulario__label">Direccion</label>
                     <div class="formulario__grupo-input">
                       <input type="text" required class="form-control formulario__input" name="apellido1" id="apellido1"
-                        placeholder="Primer Apellido">
+                        placeholder="Av. sos 123">
                       <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
                     <h5 class="formulario__input-error">Solo puede contener letras.</h5>
@@ -111,9 +113,7 @@ require_once 'function.php'
                     <h5 class="formulario__input-error">Ambas contraseñas deben ser iguales...</h5>
                   </div>
 
-                  <div class="col-md-2">
-
-                  </div>
+                 
 
                   
 
