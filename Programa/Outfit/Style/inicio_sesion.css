@@ -47,6 +47,30 @@ header {
     margin: 20px auto;
 }
 
+.fondoT {
+    background: url(../img/sos/fondoinicio.jpg) top center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.tit{
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.inputs{
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.btini{
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
 /*! Aqui se encuentra el css del footer */
 footer {
     color: white;

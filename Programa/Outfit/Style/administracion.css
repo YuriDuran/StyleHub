@@ -5,6 +5,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "IBM Plex Mono", monospace;
 }
 
 body{
@@ -16,7 +17,7 @@ body{
 }
 
 .sidebar{
-    position: absolute;
+    position: fixed;
     width: 60px;
     height: 100vh;
     background-color: #fff;
@@ -110,6 +111,7 @@ body{
     object-fit: cover;
 }
 
+/** Pagina lado derecho */
 .logoG{
     position: fixed;
     top: 50%;

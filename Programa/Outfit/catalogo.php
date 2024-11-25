@@ -9,8 +9,22 @@ $genero = $_GET['genero'];
     <?php
     include("conexion.php");
 
-    $sql = "SELECT * FROM productos WHERE estado = '2' && genero = '". $genero ."'";
+    // Validar y limpiar el parámetro genero
+    $genero = isset($_GET['genero']) ? mysqli_real_escape_string($conexion, $_GET['genero']) : '';
+
+    // Verificar si el género es válido
+    if ($genero != 'mujer' && $genero != 'hombre') {
+        // Redirigir o mostrar error si el género no es válido
+        header('Location: index.php');
+        exit();
+    }
+
+    $sql = "SELECT * FROM productos WHERE estado = '2' AND genero = '" . $genero . "'";
     $resultado = mysqli_query($conexion, $sql);
+
+    if (!$resultado) {
+        die("Error en la consulta: " . mysqli_error($conexion));
+    }
     ?>
 
     <div class="container-fluid">
@@ -36,7 +50,8 @@ $genero = $_GET['genero'];
             <div class="col-md-3 text-center">
                 <img src="<?php echo $filas['imagenF'] ?>" class="imagenC">
                 <h5><?php echo $filas['nombre'] ?></h5>
-                <p><?php echo $filas['precio'] ?></p>
+                <p>$<?php $formatoSinDecimales = number_format($filas['precio'], 0, ',', '.'); 
+                echo $formatoSinDecimales?></p>
                 <a href="producto.php?id=<?php echo $filas['id_producto'] ?>" class="boton">Ver más...</a>
             </div>
                

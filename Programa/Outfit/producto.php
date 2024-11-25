@@ -17,19 +17,32 @@ require_once 'function.php'
     <?php render_template('Header2'); ?>
 
     <div class="container product-container">
-        <?php while ($filas = mysqli_fetch_assoc($resultado)) { 
-            $id = $filas['id_producto'];?>
-            
+        <?php while ($filas = mysqli_fetch_assoc($resultado)) {
+            $id = $filas['id_producto']; ?>
+
             <div class="product-images text-center">
                 <img src="<?php echo $filas['imagenF'] ?>" alt="img1" class="image">
                 <img src="<?php echo $filas['imagenD'] ?>" alt="img2" class="image">
             </div>
 
             <div class="product-info">
+                <!-- Nombre -->
                 <h1><?php echo $filas['nombre'] ?></h1>
-                <p><?php echo $filas['descripcion'] ?></p>
-                <a href="render.php?id=<?php echo $id; ?>"><button>Ver en probador virtual</button></a>
-                <button>Añadir al Carrito</button>
+                <!-- Precio -->
+                <p class="precio">$<?php
+                                    $formatoSinDecimales = number_format($filas['precio'], 0, ',', '.');
+                                    echo $formatoSinDecimales ?></p>
+                <!-- Talla -->
+                <p>Talla: <?php echo $filas['talla'] ?></p>
+                <!-- Descipcion -->
+                <p class="desc"><?php echo $filas['descripcion'] ?></p>
+                <div class="text-center">
+                    <!-- Modelado 3D -->
+                    <a href="render.php?id=<?php echo $id; ?>"><button class="toque">Ver en probador virtual</button></a>
+                    <!-- Agregar a Carrito -->
+                    <button class="toque2">Añadir al Carrito</button>
+                </div>
+
             </div>
         <?php } ?>
 

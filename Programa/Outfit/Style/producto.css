@@ -186,7 +186,7 @@ footer div .row .col-md-4 {
 .product-info {
     position: sticky;
     top: 20px;
-    max-width: 30%;
+    max-width: 40%;
     padding-top: 10%;
 }
 
@@ -204,4 +204,39 @@ footer div .row .col-md-4 {
 
 .product-images img.visible {
     opacity: 1;
+}
+
+.precio{
+    font-weight: bold;
+    font-size: large;
+}
+
+.desc{
+    text-align: justify;
+}
+
+.toque{
+    background-color: #ddb892;
+    border: 2px solid #b08968;
+    border-radius: 10px;
+    padding: 5px 10px;   
+    margin-bottom: 10px;
+}
+
+.toque:hover{
+    color: black;
+    background-color: #b08968;
+}
+
+.toque2{
+    background-color: #ddb892;
+    border: 2px solid #b08968;
+    border-radius: 10px;
+    padding: 5px 10px;   
+    margin-bottom: 10px;
+}
+
+.toque2:hover{
+    color: black;
+    background-color: #b08968;
 }

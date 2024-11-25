@@ -74,7 +74,7 @@ if (isset($responseData['status'])) {
                 $stmt->bind_param("ss", $rutaRelativa, $id_producto);
                 $stmt->execute();
                 $stmt->close();
-                header("Location: administracion.php");
+                header("Location: ../administracion.php");
             }
             break;
         case 'FAILED':

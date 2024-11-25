@@ -12,7 +12,7 @@ require_once 'conexion.php';
         <?php render_template('Header2'); ?>
 
         <!-- Aqui se encuentra el cuerpo de la pagina -->
-        <main class="row ">
+        <main class="row">
 
             <div class="col-md-12 separador"></div>
 
@@ -20,32 +20,19 @@ require_once 'conexion.php';
 
             <!-- Cuerpo Formulario -->
             <div class="col-md-6 fondoF">
-                <h3 class="text-center">Inicio de sesion</h3>
-
-                <hr>
-                <?php
-                    if(isset($_GET['error'])) {
-                    ?>
-                    <p class="error"></p>
-                        <?php
-                        echo $_GET['error']
-                        ?>
-                        <?php
-                    }
-                ?>
-                <hr>
+                <h3 class="text-center tit">Inicio de sesion</h3>
 
                 <form action="logica/inicio_sesion.php" method="POST">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 inputs">
                             <label for="correo" class="form-label">Correo</label>
                             <input type="text" name="correo" placeholder="Ingrese su correo" class="form-control">
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-12 inputs">
                             <label for="pass" class="form-label">Contraseña</label>
                             <input type="text" name="pass" placeholder="Ingrese su contraseña" class="form-control">
                         </div>
-                        <div class="col-md-12 mt-2 text-center">
+                        <div class="col-md-12 btini text-center">
                             <button type="submit" class="btn inicio">Iniciar sesion</button>
                         </div>
                     </div>
