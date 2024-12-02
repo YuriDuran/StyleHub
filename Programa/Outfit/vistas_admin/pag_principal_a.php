@@ -74,7 +74,7 @@ require_once '../function.php';
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header ">
                         <h6 class=""><?php echo $filas['nombre'] ?> <?php echo $filas['apellidos'] ?></h6>
-                        <span>Rol: Administrador</span>
+                        <span>Pyme</span>
                     </li>
 
                     <li>
@@ -105,7 +105,7 @@ require_once '../function.php';
         </ul>
     </nav>
 
-</header>
+  </header>
 
 
   <!-- ======= Sidebar ======= -->
@@ -126,27 +126,27 @@ require_once '../function.php';
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="{% url 'generar_contrato' %}">
-          <i class="bi bi-card-list"></i><span>Contratos</span></i>
+          <i class="bi bi-card-list"></i><span>Subir Prenda</span></i>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Asesoras</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-journal-text"></i><span>Prendas</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{% url 'registro_asesora' %}">
-              <i class="bi bi-circle"></i><span>Registrar Asesora</span>
+            <a href="registro-prenda.php?id=<?php echo htmlspecialchars($id); ?>">
+              <i class="bi bi-circle"></i><span>Registrar</span>
             </a>
           </li>
           <li>
             <a href="{% url 'aprobar_solicitud' %}">
-              <i class="bi bi-circle"></i><span>Solicitud Asesora</span>
+              <i class="bi bi-circle"></i><span>Solicitud</span>
             </a>
           </li>
           <li>
             <a href="{% url 'editar_ase' %}">
-              <i class="bi bi-circle"></i><span>Editar Asesora</span>
+              <i class="bi bi-circle"></i><span>Editar Prenda</span>
             </a>
           </li>
         </ul>
@@ -241,20 +241,20 @@ require_once '../function.php';
             <!-- Fin Mejor evaluada -->
 
             <!-- Conteo clientes  -->
-            <div class="col-xxl-4 col-md-4">
+            <div class="col-xxl-6 col-md-6">
               
               <div class="card info-card customers-card">
 
                 <div class="card-body">
-                  <h5 class="card-title"> <b>Clientes</b> </h5>
+                  <h5 class="card-title"> <b>Ventas</b> </h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>Registrados</h6>
-                      <span class="text-muted small pt-2 ps-1">Cantidad: <b>{{ conteo1 }}</b></span>
+                      <h6>Registradas</h6>
+                      <span class="text-muted small pt-2 ps-1">Cantidad: <b>100</b></span>
                       <br>
                       <span class="text-muted small pt-2 ps-1"> <b>En aumento</b> </span>
                     </div>
@@ -264,29 +264,8 @@ require_once '../function.php';
             </div>
             <!-- Fin Conteo Clientes -->
 
-            <!-- Conteo Asesoras  -->
-            <div class="col-xxl-4 col-md-4">
-              
-              <div class="card info-card customers-card">
-
-                <div class="card-body">
-                  <h5 class="card-title"> <b>Asesoras</b> </h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-people"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6>Contratadas</h6>
-                      <span class="text-muted small pt-2 ps-1">Cantidad : <b>{{ conteo }}</b></span>
-                      <br>
-                      <span class="text-muted small pt-2 ps-1"> <b>incrementando</b> </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Fin Conteo Asesoras -->
+    
+          
 
             <!-- Tabla de asesoras -->
             <div class="col-12">

@@ -117,7 +117,7 @@ require_once 'conexion.php';
 
         <div class="form-container sign-in-container">
         <form action="logica/inicio_sesion.php" method="POST">
-                <img src="img/StyleHubLogo.png" style="width: 150px;height: 150px;">
+                <img src="img/StyleHubLogo.png" style="width: 120px; height: 120px;">
                 <div class="social-container">
                     <a href="#" class="social"><i class="fa fa-facebook"></i></a>
                     <a href="#" class="social"><i class="fa fa-google-plus"></i></a>

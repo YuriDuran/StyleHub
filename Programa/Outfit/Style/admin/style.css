@@ -224,10 +224,25 @@ input::placeholder {
 	
 }
 
-.imagen-asesora{
-	text-align: center;
-}
 
 .iconos{
 	font-size: 25px;
+}
+
+button important {
+    border-radius: 20px !important;
+    border: 1px solid var(--grad-clr1) !important;
+    background: rgb(0, 0, 0) !important;
+    color: #fff !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+    padding: 12px 45px !important ;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+
+}
+
+button:hover {
+    background: rgb(177, 177, 177);
+    color: #000000;
 }

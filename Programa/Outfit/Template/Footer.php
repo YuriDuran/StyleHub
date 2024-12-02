@@ -18,23 +18,27 @@ $h = "hombre";
 
             // Verificar si la variable de sesión 'user' está configurada
             if (isset($_SESSION['nombre']) && $_SESSION['tip_usuario'] == 1) {
-                $si = "col-md-3; text-decoration:none;";
+                $si = "col-md-3";
                 $cerrar = "logica/cerrar_sesion.php";
+                $style = "color:#fff; text-decoration:none;";
                 // Mostrar contenido si el usuario ha iniciado sesión
+                
+                echo "<a href='" . $cerrar . " ' style='" . $style . "' class='" . $si . "'>Cerrar sesión</a>";
                 echo "<p class=". $si .">Bienvenido, " . htmlspecialchars($_SESSION['nombre']) . "</p>";
-                echo "<a href=". $cerrar ." class=". $si .">Cerrar sesion</a>";
             } 
             elseif (isset($_SESSION['nombre']) && $_SESSION['tip_usuario'] == 2) {
                 $si = "col-md-3";
                 $cerrar = "logica/cerrar_sesion.php";
                 $style = "color:#fff; text-decoration:none;";
-                $administracion = "../vistas_admin/pag_principl_a.php";
+               
+                $administracion = "vistas_admin/pag_principal_a.php";
                 // Mostrar contenido si el usuario ha iniciado sesión
                 echo "<a href='". $administracion ."?id=". $_SESSION['id_usuario'] ."' class='". $si ."' style='" . $style . "'>Administración</a>";
-                echo "<a href='". $cerrar ."' class='". $si ."' style='" . $style . "'>Cerrar sesión</a>";
+                echo "<a href='" . $cerrar . "' class='" . $si . "' style='" . $style . "'>Cerrar sesión</a>";
+                
             }
             elseif (isset($_SESSION['nombre']) && $_SESSION['tip_usuario'] == 3) {
-                $si = "col-md-3";
+                $si = "col-md-3; text-decoration:none;";
                 $cerrar = "logica/cerrar_sesion.php";
                 $style = "color:#fff; text-decoration:none;";
                 $administracion = "administracion.php";
@@ -44,9 +48,9 @@ $h = "hombre";
             }
             else {
                 ?>
-                <a href="inicio_sesion.php" style="color:#fff; text-decoration:none;" class="col-md-3">inicio de sesion</a>
+                
 
-                <a href="iniciar.php" style="color:#fff; text-decoration:none;" class="col-md-3"> prueba </a>
+                <a href="iniciar.php" style="color:#fff; text-decoration:none;" class="col-md-3">Inicio de sesion</a>
                 <?php
             }
             ?>

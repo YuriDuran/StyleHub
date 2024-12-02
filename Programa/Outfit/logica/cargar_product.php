@@ -44,14 +44,14 @@ if($insertar){
 echo '
 <script>
 alert("Producto agregado exitosamente");
-location.href = "../index.php"
+
 </script>
 ';
 }else{
     echo '
     <script>
     alert("No se puedo agregar el producto");
-    location.href = "../index.php"
+    
     </script>
     ';
 }
