@@ -14,7 +14,7 @@ $h = "hombre";
             <a href="catalogo.php?genero=<?php echo $m?>" style="color:#fff; text-decoration:none;" class="col-md-3"> Mujer </a>
             <a href="catalogo.php?genero=<?php echo $h?>" style="color:#fff; text-decoration:none;" class="col-md-3"> Hombre </a>
             <?php
-            session_start(); // Asegúrate de tener esto al principio de tu archivo PHP
+            //session_start();  Asegúrate de tener esto al principio de tu archivo PHP
 
             // Verificar si la variable de sesión 'user' está configurada
             if (isset($_SESSION['nombre']) && $_SESSION['tip_usuario'] == 1) {
@@ -38,7 +38,7 @@ $h = "hombre";
                 
             }
             elseif (isset($_SESSION['nombre']) && $_SESSION['tip_usuario'] == 3) {
-                $si = "col-md-3; text-decoration:none;";
+                $si = "col-md-3";
                 $cerrar = "logica/cerrar_sesion.php";
                 $style = "color:#fff; text-decoration:none;";
                 $administracion = "administracion.php";
@@ -48,10 +48,10 @@ $h = "hombre";
             }
             else {
                 ?>
-                
-
                 <a href="iniciar.php" style="color:#fff; text-decoration:none;" class="col-md-3">Inicio de sesion</a>
+                <a href="carrito.php" style="color:#fff; text-decoration:none;" class="col-md-3">Carrito</a>
                 <?php
+                
             }
             ?>
 

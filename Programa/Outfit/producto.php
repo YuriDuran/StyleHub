@@ -40,7 +40,10 @@ require_once 'function.php'
                     <!-- Modelado 3D -->
                     <a href="render.php?id=<?php echo $id; ?>"><button class="toque">Ver en probador virtual</button></a>
                     <!-- Agregar a Carrito -->
-                    <button class="toque2">Añadir al Carrito</button>
+                    <form method="POST" action="agregar_carrito.php">
+                        <input type="hidden" name="id_producto" value="<?php echo $id; ?>">
+                        <button type="submit" class="toque2">Añadir al Carrito</button>
+                    </form>
                 </div>
 
             </div>
