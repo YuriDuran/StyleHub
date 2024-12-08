@@ -28,18 +28,22 @@
 </head>
 
 <?php
-require_once '../function.php'; 
-
+$cerrar = "../logica/cerrar_sesion.php";
 ?>
 
 <body>
   <?php
+    require_once '../function.php';
     
     $id = $_GET['id'];
-    $cerrar = "logica/cerrar_sesion.php";
+    
+    
+    $sql_pyme = "SELECT * FROM pyme WHERE estado_afi =" . $id;
+    $resultado2 = mysqli_query($conexion, $sql_pyme);
+
     $sql ="SELECT * FROM usuarios WHERE id_usuario =" . $id;
-    $resultado = mysqli_query($conexion, $sql, $p);
-    $p ="SELECT * FROM pyme";
+    $resultado = mysqli_query($conexion, $sql);
+ 
   ?>
 
 
@@ -67,14 +71,16 @@ require_once '../function.php';
             <li class="nav-item dropdown pe-3">
               <?php while($filas = mysqli_fetch_assoc($resultado)){ ?>
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="{{ f.fotoAsesora.url }}" alt="Profile" class="rounded-circle" />
+                    <img src="" alt="Profile" class="rounded-circle" />
                     <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $filas['correo'] ?></span>
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header ">
-                        <h6 class=""><?php echo $filas['nombre'] ?> <?php echo $filas['apellidos'] ?></h6>
+                    <?php while($filas = mysqli_fetch_assoc($resultado2)){ ?>
+                        <h6 class=""><?php echo $filas['nom_pyme']?></h6>
                         <span>Pyme</span>
+                    <?php } ?>
                     </li>
 
                     <li>
@@ -120,15 +126,11 @@ require_once '../function.php';
 
       <li class="nav-heading">Paginas</li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{% url 'inicio' %}">
+        <a class="nav-link collapsed" href="pag_principal_a.php?id=<?php echo htmlspecialchars($id); ?>">
           <i class="bi bi-house-door"></i><span>Pagina Inicio</span></i>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{% url 'generar_contrato' %}">
-          <i class="bi bi-card-list"></i><span>Subir Prenda</span></i>
-        </a>
-      </li>
+    
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Prendas</span><i class="bi bi-chevron-down ms-auto"></i>

@@ -9,6 +9,8 @@ $tip_usuario = '2';
 $fech_regis = date('Y-m-d');
 $estado_usu = '1';
 
+
+
 $nombrepyme = $_POST['nombre'];
 
 $estado_pyme = '1';
@@ -16,8 +18,10 @@ $estado_pyme = '1';
 $insertar = mysqli_query($conexion, "INSERT INTO usuarios (nombre, correo, pass, tip_usuario, fech_regis, estado_usu)
 VALUES('$nombre', '$correo', '$pass', '$tip_usuario', '$fech_regis', '$estado_usu')");
 
-$insertar2 = mysqli_query($conexion, "INSERT INTO pyme (nom_pyme, dirección, estado_pyme)
-VALUES('$nombre', '$direccion', '$estado_pyme')");
+$id_usuario = mysqli_insert_id($conexion);
+
+$insertar2 = mysqli_query($conexion, "INSERT INTO pyme (nom_pyme, dirección, estado_pyme, estado_afi)
+VALUES('$nombre', '$direccion', '$estado_pyme', '$id_usuario')");
 
 if($insertar && $insertar2){
 echo '

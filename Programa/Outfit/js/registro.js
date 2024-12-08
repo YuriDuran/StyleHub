@@ -199,3 +199,25 @@ if(edad >= 18){
   alert("Eres menor de edad :( ");
 }
 */
+
+// script.js
+document.getElementById("login-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  // Simulación de credenciales correctas
+  const validUsername = "admin";
+  const validPassword = "1234";
+
+  const alertBox = document.getElementById("alert-box");
+
+  if (username === validUsername && password === validPassword) {
+      alertBox.classList.add("hidden");
+      alert("Login successful!");
+      // Redirigir o realizar otra acción
+  } else {
+      alertBox.classList.remove("hidden");
+  }
+});

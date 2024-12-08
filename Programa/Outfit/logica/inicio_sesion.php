@@ -40,7 +40,7 @@ if (isset($_POST['correo']) && isset($_POST['pass'])) {
                 echo '
                 <script>
                 alert("Correo o Clave incorrecta");
-                location.href = "../inicio_sesion.php"
+                location.href = "../iniciar.php"
                 </script>
                 ';
                 exit();
@@ -49,7 +49,7 @@ if (isset($_POST['correo']) && isset($_POST['pass'])) {
             echo '
             <script>
             alert("Correo o Clave incorrecta");
-            location.href = "../inicio_sesion.php"
+            location.href = "../iniciar.php"
             </script>
             ';
             exit();

@@ -5,18 +5,18 @@ require_once '../function.php';
 $query = "SELECT id_categoria, nombre_categoria FROM categorias";
 $resultado2 = $conexion->query($query);
 
+$cerrar = "../logica/cerrar_sesion.php";
+
 $id = $_GET['id'];
-$cerrar = "logica/cerrar_sesion.php";
+$sql_pyme = "SELECT * FROM pyme WHERE estado_afi =" . $id;
+$resultado3 = mysqli_query($conexion, $sql_pyme);
 $sql ="SELECT * FROM usuarios WHERE id_usuario =" . $id;
-$resultado = mysqli_query($conexion, $sql, $p);
-$p ="SELECT * FROM pyme";
+$resultado = mysqli_query($conexion, $sql);
+
+$xd = mysqli_query($conexion, $sql);
 ?>
 
-<?php
-    $id = $_GET['id'];
-    $sql ="SELECT * FROM usuarios WHERE id_usuario =" . $id;
-    $p ="SELECT * FROM pyme";
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -113,46 +113,42 @@ $p ="SELECT * FROM pyme";
 
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{% url 'prinadmin' %}">
-            <i class="bi bi-grid"></i>
-            <span>Dashboard</span>
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url 'prinadmin' %}">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+                </a>
+            </li>
 
-        <li class="nav-heading">Paginas</li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{% url 'inicio' %}">
-            <i class="bi bi-house-door"></i><span>Pagina Inicio</span></i>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{% url 'generar_contrato' %}">
-            <i class="bi bi-card-list"></i><span>Subir Prenda</span></i>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-journal-text"></i><span>Prendas</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-            <li>
-                <a href="registro-prenda.php?id=<?php echo htmlspecialchars($id); ?>">
-                <i class="bi bi-circle"></i><span>Registrar</span>
+            <li class="nav-heading">Paginas</li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="pag_principal_a.php?id=<?php echo htmlspecialchars($id); ?>">
+                <i class="bi bi-house-door"></i><span>Pagina Inicio</span></i>
                 </a>
             </li>
-            <li>
-                <a href="{% url 'aprobar_solicitud' %}">
-                <i class="bi bi-circle"></i><span>Solicitud</span>
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-journal-text"></i><span>Prendas</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
+                <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="registro-prenda.php?id=<?php echo htmlspecialchars($id); ?>">
+                        <i class="bi bi-circle"></i><span>Registrar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'aprobar_solicitud' %}">
+                        <i class="bi bi-circle"></i><span>Solicitud</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'editar_ase' %}">
+                        <i class="bi bi-circle"></i><span>Editar Prenda</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
-            <li>
-                <a href="{% url 'editar_ase' %}">
-                <i class="bi bi-circle"></i><span>Editar Prenda</span>
-                </a>
-            </li>
-            </ul>
-        </li>
         </ul>
     </aside>
 
@@ -238,6 +234,26 @@ $p ="SELECT * FROM pyme";
                                             <option value="hombre">Hombre</option>
                                         </select>
                                     </div>
+                                    <div class="col-md-2">
+                                        <?php while($filas = mysqli_fetch_assoc($resultado3)){ ?>
+                                            <label for="id_pyme" class="form-label">ID PYME</label>
+                                            <input type="text" id="id_pyme" name="id_pyme" class="form-control" placeholder="<?php echo $filas['id_pyme']?>" value="<?php echo $filas['id_pyme']; ?>" readonly required>
+                                        <?php } ?>
+    
+                                                    
+
+                                    </div>
+                                    <div class="col-md-2">
+                                        <?php while($sos = mysqli_fetch_assoc($xd)){ ?>
+                                            <label for="id" class="form-label">ID PYME</label>
+                                            <input type="text" id="id" name="id" class="form-control" placeholder="<?php echo $sos['id_usuario']?>" value="<?php echo $sos['id_usuario']; ?>" readonly required>
+                                        <?php } ?>
+    
+                                                    
+
+                                    </div>
+                                    
+
                                     <!-- Descripcion del producto -->
                                     <div class="col-md-12">
                                         <label for="descripcion" class="form-label">Descripcion</label>
@@ -272,7 +288,8 @@ $p ="SELECT * FROM pyme";
 
 
                             </form>
-
+                          
+                                        
                         </div>
                     </div>
                 </div>
