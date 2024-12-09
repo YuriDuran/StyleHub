@@ -126,8 +126,8 @@ main {
 
 
 .destacado img {
-    max-height: 100%;
-    max-width: 100%;
+    max-height: 400px;
+    max-width: 536px;
     object-fit: cover;
     border-color: black;
     border-width: 2.5px;

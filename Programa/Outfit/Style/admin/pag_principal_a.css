@@ -65,7 +65,7 @@ h6 {
   font-size: 24px;
   margin-bottom: 0;
   font-weight: 600;
-  color: #012970;
+  color: #000;
 }
 
 /*--------------------------------------------------------------
@@ -78,7 +78,7 @@ h6 {
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background: #4154f1;
+  background: #ddb892;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -87,13 +87,13 @@ h6 {
 
 .back-to-top i {
   font-size: 24px;
-  color: #fff;
+  color: #000;
   line-height: 0;
 }
 
 .back-to-top:hover {
-  background: #6776f4;
-  color: #fff;
+  background: #312920;
+  color: #000;
 }
 
 .back-to-top.active {
@@ -237,7 +237,7 @@ h6 {
   padding: 20px 0 15px 0;
   font-size: 18px;
   font-weight: 500;
-  color: #012970;
+  color: #000;
   font-family: "Poppins", sans-serif;
 }
 
@@ -373,7 +373,7 @@ h6 {
 .logo span {
   font-size: 26px;
   font-weight: 700;
-  color: #fff;
+  color: #000000;
   font-family: "Nunito", sans-serif;
 }
 
@@ -382,7 +382,7 @@ h6 {
   z-index: 997;
   height: 60px;
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
-  background-color: #fff;
+  background-color: #ddb892;
   padding-left: 20px;
   /* Toggle Sidebar Button */
   /* Search Bar */
@@ -392,7 +392,7 @@ h6 {
   font-size: 32px;
   padding-left: 10px;
   cursor: pointer;
-  color: #fff;
+  color: #000000
 }
 
 .header .search-bar {
@@ -408,7 +408,7 @@ h6 {
     right: 0;
     padding: 20px;
     box-shadow: 0px 0px 15px 0px #fff;
-    background: white;
+    background: black;
     z-index: 9999;
     transition: 0.3s;
     visibility: hidden;
@@ -429,7 +429,7 @@ h6 {
 .header .search-form input {
   border: 0;
   font-size: 14px;
-  color: #fff;
+  color: #000000;
   border: 1px solid #fff;
   padding: 7px 38px 7px 8px;
   border-radius: 3px;
@@ -453,6 +453,7 @@ h6 {
 
 .header .search-form button i {
   color: #fff;
+  
 }
 
 /*--------------------------------------------------------------
@@ -460,6 +461,8 @@ h6 {
 --------------------------------------------------------------*/
 .header-nav ul {
   list-style: none;
+  
+  
 }
 
 .header-nav>ul {
@@ -469,13 +472,13 @@ h6 {
 
 .header-nav .nav-icon {
   font-size: 22px;
-  color: #fff;
+  color: #000000;
   margin-right: 25px;
   position: relative;
 }
 
 .header-nav .nav-profile {
-  color: #fff;
+  color: #000000
 }
 
 .header-nav .nav-profile img {
@@ -524,7 +527,7 @@ h6 {
 }
 
 .header-nav .notifications .notification-item:hover {
-  background-color: #f6f9ff;
+  background-color: #000;
 }
 
 .header-nav .messages {
@@ -685,7 +688,7 @@ h6 {
   align-items: center;
   font-size: 15px;
   font-weight: 600;
-  color: #4154f1;
+  color: #000000;
   transition: 0.3;
   background: #f6f9ff;
   padding: 10px 15px;
@@ -695,25 +698,25 @@ h6 {
 .sidebar-nav .nav-link i {
   font-size: 16px;
   margin-right: 10px;
-  color: #4154f1;
+  color: #ddb892;
 }
 
 .sidebar-nav .nav-link.collapsed {
-  color: #012970;
+  color: #000;
   background: #fff;
 }
 
 .sidebar-nav .nav-link.collapsed i {
-  color: #899bbd;
+  color: #555961;
 }
 
 .sidebar-nav .nav-link:hover {
-  color: #4154f1;
+  color: #835e34;
   background: #f6f9ff;
 }
 
 .sidebar-nav .nav-link:hover i {
-  color: #4154f1;
+  color: #835e34;
 }
 
 .sidebar-nav .nav-link .bi-chevron-down {
@@ -736,7 +739,7 @@ h6 {
   align-items: center;
   font-size: 14px;
   font-weight: 600;
-  color: #012970;
+  color: #000;
   transition: 0.3;
   padding: 10px 0 10px 40px;
   transition: 0.3s;
@@ -806,7 +809,7 @@ h6 {
 
 .dashboard .info-card h6 {
   font-size: 28px;
-  color: #012970;
+  color: #000;
   font-weight: 700;
   margin: 0;
   padding: 0;
@@ -1283,7 +1286,7 @@ h6 {
   font-size: 32px;
   padding-left: 0px;
   cursor: pointer;
-  color: #fff;
+  color: #000000
 }
 
 .messag {

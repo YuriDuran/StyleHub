@@ -1,15 +1,17 @@
 <?php
 require_once 'function.php';
-session_start();
+
 ?>
 <?php render_template('head', 'carrito.css'); ?>
 
 <body>
     <?php render_template('Header2'); ?>
 
+    <div class="separador"></div>
+
     <div class="container mt-5">
         <h1>Carrito de Compras</h1>
-        
+
         <?php if (empty($_SESSION['carrito'])): ?>
             <p>Tu carrito está vacío</p>
         <?php else: ?>
@@ -51,10 +53,20 @@ session_start();
                     </tfoot>
                 </table>
             </div>
-            
+
             <div class="text-end mt-3">
                 <a href="index.php" class="btn btn-secondary">Seguir Comprando</a>
-                <a href="checkout.php" class="btn btn-primary">Proceder al Pago</a>
+                <form action="prueba.php" method="POST" style="display: inline;">
+                    <input type="hidden" name="monto" value="<?php echo obtenerTotalCarrito(); ?>">
+                    <input type="hidden" name="orden" value="<?php echo uniqid('orden_'); ?>">
+                    <?php
+                    // Enviamos los datos del carrito
+                    foreach ($_SESSION['carrito'] as $item) {
+                        echo '<input type="hidden" name="productos[]" value="' . htmlspecialchars(json_encode($item)) . '">';
+                    }
+                    ?>
+                    <button type="submit" class="btn btn-primary">Proceder al Pago</button>
+                </form>
             </div>
         <?php endif; ?>
     </div>

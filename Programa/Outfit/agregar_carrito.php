@@ -1,6 +1,5 @@
 <?php
 require_once 'function.php';
-session_start();
 
 if (isset($_POST['id_producto'])) {
     $id_producto = (int)$_POST['id_producto'];

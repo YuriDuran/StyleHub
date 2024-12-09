@@ -319,3 +319,78 @@
   }
 
 })();
+
+$('#btn_guardar').click(function(){
+  Swal.fire(
+  'Exito!',
+  'Se guardo de la manera correcta',
+  'success'
+  )
+});
+$('#btn_actualizar').click(function(){
+  Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Se actualizo el registro de la manera correcta',
+      showConfirmButton: false,
+      timer: 1500
+    })
+});
+
+function alerta_eliminar(codigo){
+  alert (codigo)
+  Swal.fire({
+      title: '¿Esta seguro de eliminar el registro?',
+      text: "Verifique antes de continuar",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        mandar_php(codigo)
+      }
+    })
+};
+
+
+
+
+var id_usuario = "<?php echo htmlspecialchars($id_usuario); ?>";
+
+function mandar_php(codigo){
+  var id_usuario = $("#id").val();  // Obtener el valor de id_usuario desde el campo de entrada
+  parametros = { id: id_usuario, id_producto: codigo };  // Enviar tanto la id_usuario como id_producto
+
+
+  $.ajax({
+    data: parametros,
+    url: "eliminar.php",
+    type: "POST",
+    beforeSend: function () {},
+    success: function (){
+      Swal.fire("Eliminado","Se elimino su registro de la manera correcta","success").then((result) =>{
+        window.location.href = "editar_prenda.php?id=" + id_usuario;  
+      });
+    },
+  });
+}
+
+function registrar_php(codigo){
+  var id_usuario = $("#id").val();  // Obtener el valor de id_usuario desde el campo de entrada
+  parametros = { id: id_usuario, id_producto: codigo };  // Enviar tanto la id_usuario como id_producto
+
+
+  $.ajax({
+    data: parametros,
+    url: "eliminar.php",
+    type: "POST",
+    beforeSend: function () {},
+    success: function (){
+      Swal.fire("Eliminado","Se elimino su registro de la manera correcta","success").then((result) =>{
+        window.location.href = "editar_prenda.php?id=" + id_usuario;  
+      });
+    },
+  });
+}

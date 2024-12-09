@@ -16,7 +16,7 @@ require_once 'function.php'
 
     <?php render_template('Header2'); ?>
 
-    <div class="container product-container">
+    <div style="padding-top: 65px;" class="container product-container">
         <?php while ($filas = mysqli_fetch_assoc($resultado)) {
             $id = $filas['id_producto']; ?>
 

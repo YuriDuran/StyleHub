@@ -59,7 +59,7 @@ header {
 .boton {
     display: inline-block; /* Hace que el enlace se comporte como un botón */
     padding: 5px 10px; /* Espaciado interno */
-    background-color: rgb(98, 98, 98); /* Color de fondo */
+    background-color: #ddb892; /* Color de fondo */
     color: white; /* Color del texto */
     text-decoration: none; /* Sin subrayado */
     border-radius:3px; /* Bordes redondeados */
@@ -68,6 +68,11 @@ header {
 
 .boton:hover {
     background-color: rgb(162, 162, 162); /* Cambia el color al pasar el mouse */
+}
+
+.color{
+    background-color: #ddb892 !important;
+    color: white !important;
 }
 
 /*! Aqui se encuentra el css del footer */

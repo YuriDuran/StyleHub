@@ -37,20 +37,53 @@ $cerrar = "../logica/cerrar_sesion.php";
     
     $id = $_GET['id'];
     
-    
+    $estado = isset($_GET['estado']) ? mysqli_real_escape_string($conexion, $_GET['estado']) : '';
+
     $sql_pyme = "SELECT * FROM pyme WHERE estado_afi =" . $id;
     $resultado2 = mysqli_query($conexion, $sql_pyme);
 
     $sql ="SELECT * FROM usuarios WHERE id_usuario =" . $id;
     $resultado = mysqli_query($conexion, $sql);
+
+    $resultado_pyme = mysqli_query($conexion, $sql_pyme);
+    $xd = mysqli_query($conexion, $sql);
+
+    if ($resultado_pyme && mysqli_num_rows($resultado_pyme) > 0) {
+      // Obtén la ID de la PYME asociada
+      $pyme = mysqli_fetch_assoc($resultado_pyme);
+      $id_pyme = $pyme['id_pyme'];
+    
+      // Consulta para obtener los productos de la PYME
+      $ropa = "SELECT * FROM productos WHERE id_pyme = $id_pyme";
+      $resultado3 = mysqli_query($conexion, $ropa);
+    } else {
+      $resultado3 = null; // No hay PYME asociada al usuario
+    }
+
+    $resultado_pyme2 = mysqli_query($conexion, $sql_pyme);
+    $xd2 = mysqli_query($conexion, $sql);
+
+    if ($resultado_pyme2 && mysqli_num_rows($resultado_pyme2) > 0) {
+      // Obtén la ID de la PYME asociada
+      $pyme = mysqli_fetch_assoc($resultado_pyme2);
+      $id_pyme = $pyme['id_pyme'];
+    
+      // Consulta para obtener los productos de la PYME
+      $ropa = "SELECT * FROM productos WHERE id_pyme = $id_pyme";
+      $resultado4 = mysqli_query($conexion, $ropa);
+    } else {
+      $resultado4 = null; // No hay PYME asociada al usuario
+    }
+
+    
  
   ?>
 
 
-  <header id="header" class="header fixed-top d-flex align-items-center bg-black">
+  <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
         <i class="bi bi-list toggle-sidebar-btn"></i>
-        <a href="{% url 'prinadmin' %}" class="logo d-flex align-items-center">
+        <a href="pag_principal_a.php?id=<?php echo htmlspecialchars($id); ?>" class="logo d-flex align-items-center">
             <img src="index.php" alt="">
             <span class="d-none d-lg-block tit-logo">Style<span class="text-blank tit-logo">Hub</span></span>
         </a>
@@ -71,7 +104,7 @@ $cerrar = "../logica/cerrar_sesion.php";
             <li class="nav-item dropdown pe-3">
               <?php while($filas = mysqli_fetch_assoc($resultado)){ ?>
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="" alt="Profile" class="rounded-circle" />
+                    <img src="../img/icon.png" alt="Profile" class="rounded-circle" />
                     <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $filas['correo'] ?></span>
                 </a>
 
@@ -114,11 +147,10 @@ $cerrar = "../logica/cerrar_sesion.php";
   </header>
 
 
-  <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{% url 'prinadmin' %}">
+        <a class="nav-link collapsed" href="pag_principal_a.php?id=<?php echo htmlspecialchars($id); ?>">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -142,12 +174,7 @@ $cerrar = "../logica/cerrar_sesion.php";
             </a>
           </li>
           <li>
-            <a href="{% url 'aprobar_solicitud' %}">
-              <i class="bi bi-circle"></i><span>Solicitud</span>
-            </a>
-          </li>
-          <li>
-            <a href="{% url 'editar_ase' %}">
+              <a href="editar_prenda.php?id=<?php echo htmlspecialchars($id); ?>">
               <i class="bi bi-circle"></i><span>Editar Prenda</span>
             </a>
           </li>
@@ -155,7 +182,6 @@ $cerrar = "../logica/cerrar_sesion.php";
       </li>
     </ul>
   </aside>
-  <!-- Fin Sidebar-->
 
    <!-- Titulo de pagina -->
 
@@ -176,69 +202,7 @@ $cerrar = "../logica/cerrar_sesion.php";
       <div class="row">
 
         <div class="col-md-12">
-          <div class="row">
-
-            <!-- Mejor evaluada -->
-            <div class="col-lg-4 col-md-4">
-              <div class="card info-card sales-card">
-
-                <div class="card-body">
-                  <h5 class="card-title"><b>Asesora mejor evaluada</b></h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-star text-warning"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6>{{mejor_asesora_nombre}}</h6>
-                      
-                      <span class="text-muted small">Promedio:<b> {{mejor_promedio}} </b></span>
-                      <br>
-                      <span class="text-warning small pt-1 fw-bold">
-                        {% if prom_entero == 0 %}
-                          <i class="bi bi-star"></i>
-                          <i class="bi bi-star"></i>
-                          <i class="bi bi-star"></i>
-                          <i class="bi bi-star"></i>
-                          <i class="bi bi-star"></i>
-                          {% elif prom_entero == 1 %}
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star"></i>
-                          <i class="bi bi-star"></i>
-                          <i class="bi bi-star"></i>
-                          <i class="bi bi-star"></i>
-                          {% elif prom_entero == 2 %}
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star"></i>
-                          <i class="bi bi-star"></i>
-                          <i class="bi bi-star"></i>
-                          {% elif prom_entero == 3 %}
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star"></i>
-                          <i class="bi bi-star"></i>
-                          {% elif prom_entero == 4 %}
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star"></i>
-                          {% elif prom_entero == 5 %}
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          {% endif %}
-                      </span>
-                      <span class="text-muted small pt-2 ps-1">evaluación</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+         
 
             <!-- Fin Mejor evaluada -->
 
@@ -275,102 +239,42 @@ $cerrar = "../logica/cerrar_sesion.php";
 
                 <div class="card-body">
                   <h5 class="card-title fw-bold">
-                    Pymes <span>| Registradas</span>
+                    Modelado <span>| Aprobación</span>
                   </h5>
 
                   <table class="table table-borderless table-hover">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Direccion</th>
-                        <th scope="col">Sueldo</th>
+                        <th scope="col">Talla</th>
                         <th scope="col">Estado</th>
-                        <th scope="col" class="text-center">Acciones</th>
+           
                       </tr>
                     </thead>
                     <tbody>
-                    <?php while($filas = mysqli_fetch_assoc($resultado)){ ?>
+                    <?php while($filas = mysqli_fetch_assoc($resultado3)){ ?>
                       <tr>
-                        <th scope="row" class="py-2 "><a href="#">34</a></th>
+                        <th scope="row" class="py-2 "><?php echo $filas['id_producto'] ?></th>
                         <td><?php echo $filas['nombre'] ?></td>
+                        <td><?php echo $filas['talla'] ?></td>
                         <td>
-                          <a href="#" class="text-primary fw-bold"><?php echo $filas['direccion'] ?></a>
-                        </td>
-                        <td><?php echo $filas['comision'] ?></td>
-                        <td>
-                          {% if a.disponibilidad == 'Disponible' %}
-                          <span class="badge bg-success">Disponible</span>
-                          {% elif a.disponibilidad == 'No disponible' %}
-                          <span class="badge bg-danger">No disponible</span>
-                          {% endif %}
-                        </td>
-                        <td class="text-center">
-                          {% if a.disponibilidad == 'No disponible' %}
-                          <a href="{% url 'habilitar' a.id_asesora %}" type="button" class="btn btn-success"
-                            data-bs-toggle="modal" data-bs-target="#modal-hab-{{ forloop.counter }}">Habilitar
-                            <span><i class="bi bi-check-circle"></i></span>
-                          </a>
+                        <?php
+                          if ($filas['estado'] == '2'){
+                            echo '<span class="badge bg-success">Disponible</span>';
 
-                          {% elif a.disponibilidad == 'Disponible' %}
-                          <a href="{% url 'deshabilitar' a.id_asesora %}" type="button" class="btn btn-danger"
-                            data-bs-toggle="modal" data-bs-target="#modal-des-{{ forloop.counter }}">Deshabilitar
-                            <span><i class="bi bi-x-circle"></i></span></a>
-                          
+                          } elseif ($filas['estado'] == '1') {
+                            echo '<span class="badge bg-danger">No disponible</span>';
+                          }                        
+                        ?>
                         </td>
+                      
                       </tr>
                     <?php } ?>
-                      <!-- Fin Tabla de asesoras -->
-
-                      <!-- Modal asesora habilitada -->
-                      <div class="modal fade" id="modal-hab-{{ forloop.counter }}" data-bs-backdrop="static"
-                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="staticBackdropLabel">Asesora
-                              </h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body text-center">
-                              <i class="fas fa-check-circle text-success pb-3" style="font-size: 5rem!important;"></i>
-                              <h5 class="text-success">Asesora Habilitada.</h5>
-                            </div>
-                            <div class="modal-footer">
-                              <a href="{% url 'habilitar' a.id_asesora %}"><button type="button"
-                                  class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <!-- Modal asesora deshabilitada -->
-                      <div class="modal fade" id="modal-des-{{ forloop.counter }}" data-bs-backdrop="static"
-                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="staticBackdropLabel">Asesora
-                              </h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body text-center">
-                              <i class="fas fa-times-circle text-danger pb-3" style="font-size: 5rem!important;"></i>
-                              <h5 class="text-danger">Asesora Deshabilitada.</h5>
-                            </div>
-                            <div class="modal-footer">
-                              <a href="{% url 'deshabilitar' a.id_asesora %}"><button type="button"
-                                  class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Fin modal -->
-                      {% endfor %}
                     </tbody>
                   </table>
+
+            
                 </div>
               </div>
             </div>
@@ -381,36 +285,34 @@ $cerrar = "../logica/cerrar_sesion.php";
 
                 <div class="card-body">
                   <h5 class="card-title fw-bold">
-                    Clientes <span>| Registrados</span>
+                    Prendas <span>| Registradas</span>
                   </h5>
 
                   <table class="table table-borderless table-hover">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Direccion</th>
-                        <th scope="col">Info familia</th>
-                        <th scope="col">Info mascotas</th>
-                        <th scope="col" class="text-center">Fecha de registro</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Genero</th>
+                        <th scope="col">Color</th>
+                        <th scope="col">Publicación</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {% for c in clientes %}
-                      <tr>
-                        <th scope="row" class="py-2 "><a href="#">{{ c.id_cliente }}</a></th>
-                        <td>{{ c.id_usuario.nombres }}</td>
-                        <td>
-                          <a href="#" class="text-primary fw-bold">{{ c.id_usuario.direccion }}</a>
-                        </td>
-                        <td> {{ c.num_personas }}</td>
-                        <td> {{ c.info_mascotas }} </td>
-                        <td class="text-center"> {{ c.fecha_registro }}</td>
-                      </tr>
-                      
-                      <!-- Fin Tabla de asesoras -->
-
-                      {% endfor %}
+                      <?php while($gatito = mysqli_fetch_assoc($resultado4)){ ?>
+                        <tr>
+                          <td><?php echo $gatito['id_producto'] ?></td>
+                          <td><?php echo $gatito['nombre'] ?></td>
+                          <td>$<?php echo $gatito['precio'] ?></td>       
+                          <td><?php echo $gatito['stock'] ?></td>
+                          <td><?php echo $gatito['genero'] ?></td>
+                          <td> <?php echo $gatito['color'] ?></td>
+                          <td> <?php echo $gatito['fech_publicación'] ?></td>
+                        </tr>  
+                      <?php } ?>
+                                        
                     </tbody>
                   </table>
                 </div>
@@ -430,7 +332,7 @@ $cerrar = "../logica/cerrar_sesion.php";
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>HomeAdviser</span></strong>. Todos los derechos reservados
+      &copy; Copyright <strong><span>StyleHub</span></strong>. Todos los derechos reservados
     </div>
 
   </footer>

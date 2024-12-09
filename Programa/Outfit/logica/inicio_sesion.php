@@ -19,6 +19,7 @@ if (isset($_POST['correo']) && isset($_POST['pass'])) {
     } elseif (empty($pass)) {
         header("Location: index.php?error=la contraseña es requerido");
     } else {
+        
         $Sql = "SELECT * FROM usuarios WHERE correo = '$correo' AND pass = '$pass'";
         $result = mysqli_query($conexion, $Sql);
 

@@ -66,6 +66,8 @@ $resultado = $conexion->query($query);
                                 <option value="Verde">Verde</option>
                                 <option value="Naranjo">Naranjo</option>
                                 <option value="Morado">Morado</option>
+                                <option value="Cafe">Cafe</option>
+                                <option value="Beige">Beige</option>
                             </select>
                         </div>
                         <div class="col-md-6">

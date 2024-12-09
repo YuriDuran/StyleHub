@@ -16,73 +16,26 @@ body {
 
 
 /*! Aqui se encuentra el css del header */
-/* Estilo del header */
-.fixed-header {
+header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(131, 128, 128, 0.789);
+    background-color: rgba(131, 128, 128, 0.5);
     color: white;
-    height: 60px; /* Altura del header */
+    height: 100px; /* Altura del header */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    opacity: 0;
-    transition: opacity 0.5s ease; /* Transición suave */
+
+
 }
 
-.fixed-header .logo-small {
-    display: none; /* Al principio, el logo pequeño está oculto */
+.logo {
+    height: 100px;
+    width: 100px;
 }
-
-.fixed-header .logo-small img {
-    width: 40px; /* Tamaño pequeño del logo en el header */
-    height: auto;
-}
-
-/* Imagen principal de fondo */
-.hero-image {
-    height: 100vh;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-    background-attachment: fixed;
-    transition: opacity 1s ease-in-out; /* Transición suave de opacidad */
-}
-
-/* Logo centrado en la imagen grande */
-.hero-logo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: transform 0.5s ease, width 0.5s ease; /* Transiciones */
-}
-
-.hero-logo img {
-    width: 200px; /* Tamaño grande del logo en la imagen */
-    height: auto;
-}
-
-.content {
-    padding: 2em;
-    background-color: #f1f1f1;
-}
-
-.content h2 {
-    text-align: center;
-    margin-bottom: 1em;
-}
-
-.content p {
-    margin: 1em 0;
-    font-size: 1.2em;
-    line-height: 1.5;
-}
-
 
 /** Aqui se encuentra el css del cuerpo */
 main {
@@ -96,7 +49,7 @@ main {
 }
 
 .separador{
-    height: 45px;
+    height: 60px;
 }
 
 /*! Aqui se encuentra el css del destacado */

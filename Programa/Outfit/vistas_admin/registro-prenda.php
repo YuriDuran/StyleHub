@@ -47,10 +47,10 @@ $xd = mysqli_query($conexion, $sql);
 
 <body>
 
-    <header id="header" class="header fixed-top d-flex align-items-center bg-black">
+    <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="d-flex align-items-center justify-content-between">
             <i class="bi bi-list toggle-sidebar-btn"></i>
-            <a href="{% url 'prinadmin' %}" class="logo d-flex align-items-center">
+            <a href="pag_principal_a.php?id=<?php echo htmlspecialchars($id); ?>" class="logo d-flex align-items-center">
                 <img src="index.php" alt="">
                 <span class="d-none d-lg-block tit-logo">Style<span class="text-blank tit-logo">Hub</span></span>
             </a>
@@ -71,7 +71,7 @@ $xd = mysqli_query($conexion, $sql);
                 <li class="nav-item dropdown pe-3">
                 <?php while($filas = mysqli_fetch_assoc($resultado)){ ?>
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="{{ f.fotoAsesora.url }}" alt="Profile" class="rounded-circle" />
+                        <img src="../img/icon.png" alt="Profile" class="rounded-circle" />
                         <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $filas['correo'] ?></span>
                     </a>
 
@@ -114,7 +114,7 @@ $xd = mysqli_query($conexion, $sql);
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{% url 'prinadmin' %}">
+                <a class="nav-link collapsed" href="<?php echo htmlspecialchars($id); ?>">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
                 </a>
@@ -132,21 +132,16 @@ $xd = mysqli_query($conexion, $sql);
                 <i class="bi bi-journal-text"></i><span>Prendas</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="registro-prenda.php?id=<?php echo htmlspecialchars($id); ?>">
-                        <i class="bi bi-circle"></i><span>Registrar</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'aprobar_solicitud' %}">
-                        <i class="bi bi-circle"></i><span>Solicitud</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'editar_ase' %}">
-                        <i class="bi bi-circle"></i><span>Editar Prenda</span>
-                        </a>
-                    </li>
+                <li>
+                    <a href="registro-prenda.php?id=<?php echo htmlspecialchars($id); ?>">
+                    <i class="bi bi-circle"></i><span>Registrar</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="editar_prenda.php?id=<?php echo htmlspecialchars($id); ?>">
+                    <i class="bi bi-circle"></i><span>Editar Prenda</span>
+                    </a>
+                </li>
                 </ul>
             </li>
         </ul>
@@ -155,11 +150,11 @@ $xd = mysqli_query($conexion, $sql);
 
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Asesoras</h1>
+            <h1>Prendas</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Asesoras</a></li>
-                    <li class="breadcrumb-item active">Registro Asesora</li>
+                    <li class="breadcrumb-item"><a href="#">Prendas</a></li>
+                    <li class="breadcrumb-item active">Registro Prenda</li>
                 </ol>
             </nav>
         </div>
@@ -170,7 +165,7 @@ $xd = mysqli_query($conexion, $sql);
                 <div class="col-lg-12">
                     <div class="card mt-3">
                         <div class="card-body">
-                            <h5 class="card-title">Formulario de Registro</h5>
+                            <h5 class="card-title">Registro</h5>
                             <hr class="mt-0">
 
 
@@ -206,15 +201,18 @@ $xd = mysqli_query($conexion, $sql);
                                     <div class="col-md-6">
                                         <label for="color" class="form-label">Color del producto</label>
                                         <select name="color" id="color" class="form-select" required>
-                                            <option value="">Elegir color...</option>
-                                            <option value="Blanco">Blanco</option>
-                                            <option value="Negro">Negro</option>
-                                            <option value="Rojo">Rojo</option>
-                                            <option value="Amarillo">Amarillo</option>
-                                            <option value="Azul">Azul</option>
-                                            <option value="Verde">Verde</option>
-                                            <option value="Naranjo">Naranjo</option>
-                                            <option value="Morado">Morado</option>
+                                        <option value="">Elegir color...</option>
+                                        <option value="Blanco">Blanco</option>
+                                        <option value="Negro">Negro</option>
+                                        <option value="Beige">Gris</option>
+                                        <option value="Rojo">Rojo</option>
+                                        <option value="Amarillo">Amarillo</option>
+                                        <option value="Azul">Azul</option>
+                                        <option value="Verde">Verde</option>
+                                        <option value="Naranjo">Naranjo</option>
+                                        <option value="Morado">Morado</option>
+                                        <option value="Cafe">Cafe</option>
+                                        <option value="Beige">Beige</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
@@ -301,7 +299,7 @@ $xd = mysqli_query($conexion, $sql);
 
     <footer id="footer" class="footer">
         <div class="copyright">
-            &copy; Copyright <strong><span>HomeAdviser</span></strong>. Todos los derechos reservados
+            &copy; Copyright <strong><span>StyleHub</span></strong>. Todos los derechos reservados
         </div>
 
     </footer>
@@ -322,16 +320,16 @@ $xd = mysqli_query($conexion, $sql);
             class="bi bi-arrow-up-short"></i></a>
 
 
-    <script src="{% static 'Principal/js/admin/apexcharts.min.js' %}"></script>
-    <script src="{% static 'Principal/js/admin/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'Principal/js/admin/chart.umd.js' %}"></script>
-    <script src="{% static 'Principal/js/admin/echarts.min.js'  %}"></script>
-    <script src="{% static 'Principal/js/admin/quill.min.js' %}"></script>
-    <script src="{% static 'Principal/js/admin/simple-datatables.js' %}"></script>
-    <script src="{% static 'Principal/js/admin/tinymce.min.js' %}"></script>
-    <script src="{% static 'Principal/js/admin/validate.js' %}"></script>
-    <script src="{% static 'Principal/js/admin/validacion-form.js' %}"></script>
-    <script src="{% static 'Principal/js/admin/main.js' %}"></script>
+    <script src="../js/admin/apexcharts.min.js"></script>
+    <script src="../js/admin/bootstrap.bundle.min.js"></script>
+    <script src="../js/admin/chart.umd.js"></script>
+    <script src="../js/admin/echarts.min.js"></script>
+    <script src="../js/admin/quill.min.js"></script>
+    <script src="../js/admin/simple-datatables.js"></script>
+    <script src="../js/admin/tinymce.min.js"></script>
+    <script src="../js/admin/validate.js"></script>
+    <script src="../js/admin/validacion-form.js"></script>
+    <script src="../js/admin/main.js"></script>
     <script src="https://kit.fontawesome.com/dac10f1627.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"

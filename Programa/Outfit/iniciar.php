@@ -117,7 +117,7 @@ require_once 'conexion.php';
 
         <div class="form-container sign-in-container">
         <form action="logica/inicio_sesion.php" method="POST">
-                <img src="img/StyleHubLogo.png" style="width: 120px; height: 120px;">
+                    <a href="index.php"><img src="img/StyleHubLogo.png" style="width: 120px; height: 120px;"></a>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fa fa-facebook"></i></a>
                     <a href="#" class="social"><i class="fa fa-google-plus"></i></a>
@@ -125,16 +125,16 @@ require_once 'conexion.php';
                 </div>
                 <h5>Iniciar sesion</h5>
                 <div class="infield">
-                    <input type="email" name="correo"  required placeholder="Email admin@gmail.com o user@gmail.com" name="email" autocomplete="off">
+                    <input type="email" name="correo"  required placeholder="Email admin@gmail.com o user@gmail.com" autocomplete="off">
                     <label></label>
                 </div>
                 <div class="infield">
-                    <input type="password" name="pass" required placeholder="Contraseña '12345'" name="password" autocomplete="off">
+                    <input type="password" name="pass" required placeholder="Contraseña '12345'" autocomplete="off">
                     <label></label>
                 </div>
                 <a href="recuperarcuenta.php" class="forgot">¿Olvidaste tu contraseña?</a>
-                <button type="submit">Iniciar sesión</button>
-            </form>
+                <button style="margin-bottom: 15px;" type="submit">Iniciar sesión</button>
+        </form>
         </div>
 
         <div class="overlay-container" id="overlayCon">
