@@ -11,6 +11,10 @@ html,
 
 body {
     height: 100%;
+    background-image: url(../img/tienda.jpg);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 
@@ -50,6 +54,27 @@ main {
 
 .separador{
     height: 10em;
+}
+
+th{
+    background-color: #ddb892 !important;
+    font-weight: bold;
+}
+
+td{
+    background-color: white !important;
+}
+
+.colors{
+    background-color: #ddb892 !important;
+    border-radius: 10px;
+    font-weight: bold !;
+}
+
+.colors:hover{
+    background-color: #ddb892 !important;
+    color: black !important;
+    transform: scale(1.2);
 }
 
 /*! Aqui se encuentra el css del destacado */

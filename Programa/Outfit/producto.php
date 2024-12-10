@@ -9,6 +9,8 @@ require_once 'function.php'
     include("conexion.php");
     $id = $_GET['id'];
 
+    $user = $_SESSION['nombre'] ?? null;
+
     $sql = "SELECT * FROM productos WHERE id_producto =" . $id;
     $resultado = mysqli_query($conexion, $sql);
 
@@ -37,13 +39,16 @@ require_once 'function.php'
                 <!-- Descipcion -->
                 <p class="desc"><?php echo $filas['descripcion'] ?></p>
                 <div class="text-center">
-                    <!-- Modelado 3D -->
-                    <a href="render.php?id=<?php echo $id; ?>"><button class="toque">Ver en probador virtual</button></a>
                     <!-- Agregar a Carrito -->
-                    <form method="POST" action="agregar_carrito.php">
-                        <input type="hidden" name="id_producto" value="<?php echo $id; ?>">
-                        <button type="submit" class="toque2">Añadir al Carrito</button>
-                    </form>
+                    <?php if (isset($user) && !empty($user)) { ?>
+                        <form method="POST" action="agregar_carrito.php">
+                            <input type="hidden" name="id_producto" value="<?php echo $id; ?>">
+                            <input type="number" name="cantidad" value="1" min="1" max="<?php echo $filas['stock']; ?>" style="width: 50px;">
+                            <button type="submit" class="toque2">Añadir al Carrito</button>
+                        </form>
+                    <?php } else { ?>
+                        <a href="iniciar.php"><button class="toque2">Iniciar Sesión para Añadir al Carrito</button></a>
+                    <?php } ?>
                 </div>
 
             </div>

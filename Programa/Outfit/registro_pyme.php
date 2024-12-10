@@ -87,7 +87,7 @@ require_once 'conexion.php';
                       <input type="email" required class="formulario__input" name="email" id="email" placeholder="hola@hola.com">
                       <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
-                    <h5 class="formulario__input-error">Ta mal</h5>
+                    <h5 class="formulario__input-error">Correo Invalido</h5>
                   </div>
                   <div class="col-md-6">
 
@@ -100,7 +100,7 @@ require_once 'conexion.php';
                       <input type="password" required class="formulario__input" name="con1" id="con1" placeholder="Contraseña">
                       <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
-                    <h5 class="formulario__input-error">Ta mal solo son entre 4 y 9 dígitos</h5>
+                    <h5 class="formulario__input-error">Está mal solo son entre 5 y 9 caracteres</h5>
                   </div>
 
                   <div class=" formulario__grupo" id="grupo__password2">

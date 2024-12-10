@@ -52,7 +52,9 @@ try {
 
                         $detalle = mysqli_query($conexion, "INSERT INTO detalle_pedido (id_pedido, id_producto, cantidad) VALUES ($id_pedido, $id_producto, {$producto['cantidad']})");
 
-                        $pago = mysqli_query($conexion, "INSERT INTO pago (id_pago, monto, metodo_pago, estado_pago, fecha_pago, id_pedido) VALUES ('$si', {$producto['precio']}, 1, 1, '$fech_pedido', $id_pedido)");
+                        $pago = mysqli_query($conexion, "INSERT INTO pago (id_trans, monto, metodo_pago, estado_pago, fecha_pago, id_pedido) VALUES ('$si', {$producto['precio']}, 1, 1, '$fech_pedido', $id_pedido)");
+
+                        $actualizar_stock = mysqli_query($conexion, "UPDATE productos SET stock = stock - {$producto['cantidad']} WHERE id_producto = $id_producto");
                     } else {
                         
                         throw new Exception('El producto no es un array válido');
@@ -65,7 +67,7 @@ try {
             // Limpiar el carrito después del pago exitoso
             unset($_SESSION['carrito']);
 
-            header("Location: vistaPExitoso.php?id_pedido=". urlencode($id_pedido));
+            header("Location: vistaPExitoso.php?id=". urlencode($id_pedido));
         }
 
         // Limpiar los datos de la sesión

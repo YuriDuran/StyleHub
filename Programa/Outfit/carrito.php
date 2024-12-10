@@ -5,7 +5,7 @@ require_once 'function.php';
 <?php render_template('head', 'carrito.css'); ?>
 
 <body>
-    <?php render_template('Header2'); ?>
+    <?php render_template('Header2'); ?> 
 
     <div class="separador"></div>
 
@@ -32,7 +32,7 @@ require_once 'function.php';
                             <tr>
                                 <td><?php echo $item['nombre']; ?></td>
                                 <td><img src="<?php echo $item['imagen']; ?>" alt="<?php echo $item['nombre']; ?>" style="width: 50px;"></td>
-                                <td>$<?php echo number_format($item['precio'], 0, ',', '.'); ?></td>
+                                <td>$<?php echo number_format($item['precio'], 0, ',', '.'); ?></td> 
                                 <td><?php echo $item['cantidad']; ?></td>
                                 <td>$<?php echo number_format($item['precio'] * $item['cantidad'], 0, ',', '.'); ?></td>
                                 <td>
@@ -53,7 +53,6 @@ require_once 'function.php';
                     </tfoot>
                 </table>
             </div>
-
             <div class="text-end mt-3">
                 <a href="index.php" class="btn btn-secondary">Seguir Comprando</a>
                 <form action="prueba.php" method="POST" style="display: inline;">
@@ -66,6 +65,17 @@ require_once 'function.php';
                     }
                     ?>
                     <button type="submit" class="btn btn-primary">Proceder al Pago</button>
+                </form>
+            </div>
+            <div class="text-end mt-3">
+                <form action="render.php" method="GET">
+                    <?php foreach ($_SESSION['carrito'] as $item): ?>
+                        <div>
+                            <input type="checkbox" name="productos[]" value="<?php echo $item['id']; ?>">
+                            <?php echo $item['nombre']; ?>
+                        </div>
+                    <?php endforeach; ?>
+                    <button type="submit" class="btn btn-primary">Ver Productos Seleccionados</button>
                 </form>
             </div>
         <?php endif; ?>

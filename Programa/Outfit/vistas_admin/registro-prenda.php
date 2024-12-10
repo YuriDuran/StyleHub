@@ -126,6 +126,11 @@ $xd = mysqli_query($conexion, $sql);
                 <i class="bi bi-house-door"></i><span>Pagina Inicio</span></i>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="pedidos_p.php?id=<?php echo htmlspecialchars($id); ?>">
+                <i class="bi bi-bag-check"></i><span>Pedidos</span></i>
+                </a>
+            </li>
             
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">

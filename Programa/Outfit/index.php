@@ -32,6 +32,9 @@ require_once 'function.php'
             <!-- Separador de pagina -->
             <div class="col-md-12 separador"></div>
 
+            <?php render_template('banner_pyme'); ?>
+
+            <div class="col-md-12 separador"></div>
         </main>
 
         <!--Aqui se encuentra el footer de la pagina -->

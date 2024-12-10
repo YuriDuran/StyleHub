@@ -37,11 +37,9 @@
     $query = "SELECT id_categoria, nombre_categoria FROM categorias";
     $resultadoSOS = $conexion->query($query);
 
-    $id = $_GET['id'];
-    $query = "SELECT id_pyme FROM pyme";
-    
+    $id = $_GET['id_usuario']; 
     $sql_pyme = "SELECT * FROM pyme WHERE estado_afi =" . $id;
-    $resultado2 = mysqli_query($conexion, $sql_pyme);
+    $resultado3 = mysqli_query($conexion, $sql_pyme);
 
     $sql ="SELECT * FROM usuarios WHERE id_usuario =" . $id;
     $resultado = mysqli_query($conexion, $sql);
@@ -49,8 +47,9 @@
     $resultado_pyme = mysqli_query($conexion, $sql_pyme);
     $xd = mysqli_query($conexion, $sql);
 
-    $sql_pyme = "SELECT * FROM pyme WHERE estado_afi =" . $id;
-    $resultado3 = mysqli_query($conexion, $sql_pyme);   
+
+    $resultado_u = mysqli_query($conexion, $sql);
+
    
     if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         $id_producto = intval($_GET['id']); // Convierte el valor a un entero seguro
@@ -68,24 +67,7 @@
     }
 
   
-
-
-    
-
-    if (isset($_GET['id_producto']) && is_numeric($_GET['id_producto'])) {
-        // Si hay filas, obtener la información de la categoría
-        $id_producto = intval($_GET['id']); // Convierte el valor a un entero seguro
-        $query = "SELECT * FROM productos WHERE id_producto = $id_producto";
-
-        $lol = "SELECT id_categoria FROM productos WHERE id_producto = $id_producto";
-
-        // Consulta para obtener los productos de la categoría
-        $cat = "SELECT * FROM id_categoria WHERE id_categoria = $lol";
-        $resultadomil = mysqli_query($conexion, $cat);
-    } else {
-        $resultadomil = null; // No hay categorías disponibles
-    }
-
+  
     ?>
         
     
@@ -171,7 +153,12 @@
                 <i class="bi bi-house-door"></i><span>Pagina Inicio</span></i>
                 </a>
             </li>
-            
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="pedidos_p.php?id=<?php echo htmlspecialchars($id); ?>">
+                <i class="bi bi-bag-check"></i><span>Pedidos</span></i>
+                </a>
+            </li>
+                    
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-text"></i><span>Prendas</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -212,10 +199,11 @@
                         <div class="card-body">
                             <h5 class="card-title">Modificar asesora</h5>
                             <hr class="mt-0">
+                            
                             <?php while($filas = mysqli_fetch_assoc($tomy)){ ?>
                             
-                            <form class="row g-3 formulario" id="formulario" onsubmit="return validarFormulario()"
-                                action="{% url 'edit' a.id_asesora a.id_usuario.id_usuario %}" method="POST" name="formulario"
+                            <form class="row g-3 formulario" id="formulario" 
+                                action="actualizar_product.php" method="POST" name="formulario"
                                 enctype="multipart/form-data">
 
                           
@@ -227,28 +215,17 @@
                                         <input value="<?php echo $filas['nombre'] ?>" type="text" id="nombre" name="nombre" class="form-control" required>
                                     </div>
                                     <!-- Categoria del producto -->
-                                    <div class="col-md-6">
-                                        <label for="categoria" class="form-label">Categoria del producto</label>
-                                        <select name="categoria" id="categoria" class="form-select" required>
-                                            
-                                            <?php
-                                        
-                                            // Llenar el select con las categorías
-                                            while ($fila = $resultadoSOS->fetch_assoc()) {
-                                                echo "<option value='" . $fila['id_categoria'] . "'>" . $fila['nombre_categoria'] . "</option>";
-                                            }
-                                            ?>
-                                            
-                                            <?php
-                                            mysqli_close($conexion);
-                                            ?>
-                                        </select>
-                                    </div>
+                    
                                     <!-- Precio del producto -->
                                     <div class="col-md-6">
                                         <label for="precio" class="form-label">Precio del producto</label>
                                         <input type="number" id="precio" value="<?php echo $filas['precio'] ?>" name="precio" class="form-control" step="0.01" required>
                                     </div>
+                                    <div class="col-md-12">
+                                        <label for="descripcion" class="form-label">Descripcion</label>
+                                        <input value="<?php echo $filas['descripcion'] ?>" type="text" id="descripcion" name="descripcion" class="form-control" required>
+                                    </div>
+
                                     <!-- Color del producto -->
                                     <div class="col-md-6">
                                         <label for="color" class="form-label">Color del producto</label>
@@ -285,27 +262,24 @@
                                         </select>
                                     </div>
                                     <div class="col-md-2">
-                                        <?php while($filas = mysqli_fetch_assoc($resultado3)){ ?>
-                                            <label for="id_pyme" class="form-label">ID PYME</label>
-                                            <input type="text" id="id_pyme" name="id_pyme" class="form-control" placeholder="<?php echo $filas['id_pyme']?>" value="<?php echo $filas['id_pyme']; ?>" readonly required>
-                                        <?php } ?>
-    
-                                                    
+                                  
+                                            <label for="id_producto" class="form-label">ID PRODUCTO</label>
+                                            <input type="text" id="id_producto" name="id_producto" class="form-control" placeholder="<?php echo $filas['id_producto']?>" value="<?php echo $filas['id_pyme']; ?>" readonly required>
+
+                                                            
 
                                     </div>
                                     <div class="col-md-2">
-                                        <?php while($sos = mysqli_fetch_assoc($xd)){ ?>
-                                            <label for="id" class="form-label">ID PYME</label>
-                                            <input type="text" id="id" name="id" class="form-control" placeholder="<?php echo $sos['id_usuario']?>" value="<?php echo $sos['id_usuario']; ?>" readonly required>
-                                        <?php } ?>
-    
-                                                    
-
+                                        <?php while($sos = mysqli_fetch_assoc($resultado_u)){ ?>
+                                            <label for="id" class="form-label">ID U</label>
+                                            <input type="text" id="id" name="id" class="form-control" value="<?php echo $sos['id_usuario']; ?>" readonly required>
+                                        <?php } ?>                          
                                     </div>
+                                    
 
                                 <div class="text-end pt-3">
                                     <button type="reset" class="btn btn-secondary botones-form">Resetear</button>
-                                    <button type="submit" class="btn btn-primary botones-form">Editar</button>
+                                    <button type="submit"  class="btn btn-primary botones-form">Editar</button>
                                 </div>
 
                             </form>
@@ -322,7 +296,7 @@
 
     <footer id="footer" class="footer">
         <div class="copyright">
-            &copy; Copyright <strong><span>HomeAdviser</span></strong>. Todos los derechos reservados
+            &copy; Copyright <strong><span></span></strong>. Todos los derechos reservados
         </div>
 
     </footer>

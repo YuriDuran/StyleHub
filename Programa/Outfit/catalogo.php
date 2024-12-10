@@ -30,7 +30,7 @@ $genero = $_GET['genero'];
     $categoria = isset($_GET['id_categoria']) ? mysqli_real_escape_string($conexion, $_GET['id_categoria']) : '';
 
     // Construir la consulta SQL base
-    $sql = "SELECT * FROM productos WHERE estado = '2' AND genero = '" . $genero . "'";
+    $sql = "SELECT * FROM productos WHERE estado = '2' AND genero = '" . $genero . "' AND stock > 0";
 
     // Agregar filtros a la consulta
     if (!empty($talla)) {
@@ -174,6 +174,9 @@ $genero = $_GET['genero'];
                             <p>$<?php $formatoSinDecimales = number_format($filas['precio'], 0, ',', '.');
                                 echo $formatoSinDecimales ?></p>
                             <a href="producto.php?id=<?php echo $filas['id_producto'] ?>" class="boton">Ver más...</a>
+                            <form action="agregar_carrito.php" method="POST" style="display: inline;">
+                                <input type="hidden" name="id_producto" value="<?php echo $filas['id_producto']; ?>">
+                            </form>
                         </div>
                     <?php } ?>
                 </div>

@@ -148,3 +148,19 @@ footer {
 footer div .row .col-md-4 {
     margin-top: 10px;
 }
+
+.pulse-effect {
+    border: none;
+    color: white;
+    padding: 14px 28px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #4a4c4e; /* Color base del botón */
+    transition: transform 0.3s ease-in-out; /* Transición suave del efecto de pulsación */
+}
+.pulse-effect:hover {
+    background-color: #72808f; /* Cambia el color al pasar el cursor sobre el botón */
+}
+.pulse-effect:active {
+    transform: scale(0.9); /* Reduce ligeramente el tamaño del botón cuando se hace clic */
+}

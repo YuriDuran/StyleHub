@@ -2,13 +2,34 @@
 require_once 'function.php';
 require 'conexion.php';
 
-// Obtener el ID del producto
-$id_producto = $_GET['id'];
-$query = "SELECT modelo FROM productos WHERE id_producto = " . $id_producto;
-$resultado = $conexion->query($query);
-while ($fila = $resultado->fetch_assoc()) {
-    $render = $fila['modelo'];
+// Obtener las IDs de los productos seleccionados
+$ids_productos = isset($_GET['productos']) ? $_GET['productos'] : [];
+
+// Inicializar arreglos para almacenar los productos
+$poleras = [];
+$pantalones = [];
+
+// Validar que se hayan seleccionado productos
+if (count($ids_productos) > 0) {
+    // Consulta para obtener poleras y camisas
+    $query_poleras = "SELECT modelo, id_categoria FROM productos WHERE id_producto IN (" . implode(',', array_map('intval', $ids_productos)) . ") AND id_categoria IN (1, 2)"; // 1: Polera, 2: Camisa
+    $resultado_poleras = $conexion->query($query_poleras);
+    
+    while ($fila = $resultado_poleras->fetch_assoc()) {
+        $poleras[] = $fila; // Almacenar poleras
+    }
+
+    // Consulta para obtener pantalones y shorts
+    $query_pantalones = "SELECT modelo, id_categoria FROM productos WHERE id_producto IN (" . implode(',', array_map('intval', $ids_productos)) . ") AND id_categoria IN (3, 5)"; // 3: Pantalon, 5: Short
+    $resultado_pantalones = $conexion->query($query_pantalones);
+    
+    while ($fila = $resultado_pantalones->fetch_assoc()) {
+        $pantalones[] = $fila; // Almacenar pantalones
+    }
 }
+
+// Lógica para posicionar las prendas
+
 ?>
 <?php render_template('head'); ?>
 
@@ -20,7 +41,6 @@ while ($fila = $resultado->fetch_assoc()) {
         <?php render_template('Header'); ?>
 
         <main>
-
         </main>
 
         <!-- Aquí se encuentra el footer de la página -->
@@ -34,120 +54,56 @@ while ($fila = $resultado->fetch_assoc()) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js"></script>
 
     <script>
-        // Crear la escena y la cámara
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer();
-        scene.background = new THREE.Color('#aab7c9');
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
+    // Crear la escena y la cámara
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    scene.background = new THREE.Color('#aab7c9');
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
 
-        // Añadir iluminación
-        const ambientLight = new THREE.AmbientLight(0xffffff, 1.7);
-        scene.add(ambientLight);
+    // Añadir iluminación
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.7);
+    scene.add(ambientLight);
 
-        // Cargar el modelo desde la base de datos
-        const loader = new THREE.GLTFLoader();
-        let mannequin;
-
-        loader.load('<?php echo $render; ?>', function (gltf) {
-            mannequin = gltf.scene;
-            mannequin.scale.set(2.0, 2.0, 2.0);
-            mannequin.position.y = 0;
-            scene.add(mannequin);
-        }, undefined, function (error) {
-            console.error('Error cargando el modelo:', error);
+    // Cargar modelos de poleras
+    <?php foreach ($poleras as $item): ?>
+        const loaderPolera = new THREE.GLTFLoader();
+        loaderPolera.load('<?php echo $item['modelo']; ?>', function(gltf) {
+            const polera = gltf.scene;
+            polera.scale.set(1.6, 1.6, 1.6);
+            polera.position.y = 1; // Posición para la polera
+            scene.add(polera);
+        }, undefined, function(error) {
+            console.error('Error cargando el modelo de polera:', error);
         });
+    <?php endforeach; ?>
 
-        // Control de la cámara
-        const controls = new THREE.OrbitControls(camera, renderer.domElement);
-        camera.position.set(0, 2, 5);
-        controls.update();
-
-        // Crear el mundo físico con Cannon.js
-        const world = new CANNON.World();
-        world.gravity.set(0, -9.807, 0);  // Gravedad hacia abajo
-
-        // Crear un material para el maniquí
-        const mannequinMaterial = new CANNON.Material('mannequinMaterial');
-
-        // Crear un cuerpo rígido para el maniquí (para colisiones)
-        const mannequinBody = new CANNON.Body({
-            mass: 1,
-            position: new CANNON.Vec3(0, 1, 0)
+    // Cargar modelos de pantalones
+    <?php foreach ($pantalones as $item): ?>
+        const loaderPantalon = new THREE.GLTFLoader();
+        loaderPantalon.load('<?php echo $item['modelo']; ?>', function(gltf) {
+            const pantalon = gltf.scene;
+            pantalon.scale.set(2.0, 2.0, 2.0);
+            pantalon.position.y = -2,5; // Posición para el pantalón
+            scene.add(pantalon);
+        }, undefined, function(error) {
+            console.error('Error cargando el modelo de pantalón:', error);
         });
+    <?php endforeach; ?>
 
-        mannequinBody.addShape(new CANNON.Box(new CANNON.Vec3(0.5, 1, 0.25))); // Ajustar según el modelo del maniquí
-        world.addBody(mannequinBody);
+    // Control de la cámara
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    camera.position.set(0, 2, 5);
+    controls.update();
 
-        // Simulación de la polera (aumentar resolución y ajustar parámetros)
-        const clothWidth = 1;  // Mayor resolución para mayor detalle
-        const clothHeight = 1; 
-        const particleSpacing = 1;  // Espaciado más pequeño para un ajuste más detallado
-        const particles = [];
+    // Función de animación
+    function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+    }
 
-        // Crear las partículas de la polera
-        for (let i = 0; i < clothWidth; i++) {
-            for (let j = 0; j < clothHeight; j++) {
-                const mass = j === 0 ? 0 : 0.05;  // La primera fila tiene masa 0 para que esté fija
-                const particle = new CANNON.Body({
-                    mass: mass,
-                    position: new CANNON.Vec3(i * particleSpacing, 1 + j * particleSpacing, 0),
-                    shape: new CANNON.Sphere(0.01)  // Partículas pequeñas para mayor precisión
-                });
-                world.addBody(particle);
-                particles.push(particle);
-            }
-        }
-
-        // Crear la malla visual para la polera en Three.js
-        const clothGeometry = new THREE.BufferGeometry();
-        const positions = new Float32Array(clothWidth * clothHeight * 3);
-
-        for (let i = 0; i < clothWidth; i++) {
-            for (let j = 0; j < clothHeight; j++) {
-                const index = (i + j * clothWidth) * 3;
-                positions[index] = i * particleSpacing;
-                positions[index + 1] = 1 + j * particleSpacing;
-                positions[index + 2] = 0;
-            }
-        }
-
-        clothGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        const clothMaterial = new THREE.MeshBasicMaterial({ color: 0xe51a4c, wireframe: true });  // Polera negra
-        const clothMesh = new THREE.Mesh(clothGeometry, clothMaterial);
-        clothMesh.position.set(-0.25, -1.3, -0.1);  // Ajustar la posición en el maniquí
-        scene.add(clothMesh);
-
-        // Función para actualizar la malla de la polera
-        function updateClothMesh() {
-            const positions = clothGeometry.attributes.position.array;
-            for (let i = 0; i < clothWidth; i++) {
-                for (let j = 0; j < clothHeight; j++) {
-                    const index = (i + j * clothWidth) * 3;
-                    const particle = particles[i + j * clothWidth];
-                    positions[index] = particle.position.x;
-                    positions[index + 1] = particle.position.y;
-                    positions[index + 2] = particle.position.z;
-                }
-            }
-            clothGeometry.attributes.position.needsUpdate = true;
-        }
-
-        // Loop de renderizado y física
-        function animate() {
-            requestAnimationFrame(animate);
-
-            // Avanzar la simulación física
-            world.step(1 / 60);
-
-            // Actualizar la malla de la polera
-            updateClothMesh();
-
-            // Renderizar la escena
-            renderer.render(scene, camera);
-        }
-
-        animate();
+    animate();
     </script>
+
 </body>

@@ -75,7 +75,17 @@ $cerrar = "../logica/cerrar_sesion.php";
       $resultado4 = null; // No hay PYME asociada al usuario
     }
 
-    
+    // Contar la cantidad de pedidos de la PYME
+    $sql_pedidos = "
+    SELECT COUNT(DISTINCT p.id_pedido) as total_pedidos 
+    FROM pedidos p
+    JOIN detalle_pedido dp ON p.id_pedido = dp.id_pedido
+    JOIN productos pr ON dp.id_producto = pr.id_producto
+    WHERE pr.id_pyme = $id_pyme";
+
+    $resultado_pedidos = mysqli_query($conexion, $sql_pedidos);
+  $datos_pedidos = mysqli_fetch_assoc($resultado_pedidos);
+$total_pedidos = $datos_pedidos['total_pedidos'];
  
   ?>
 
@@ -83,8 +93,8 @@ $cerrar = "../logica/cerrar_sesion.php";
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
         <i class="bi bi-list toggle-sidebar-btn"></i>
-        <a href="pag_principal_a.php?id=<?php echo htmlspecialchars($id); ?>" class="logo d-flex align-items-center">
-            <img src="index.php" alt="">
+        <a href="../index.php" class="logo d-flex align-items-center">
+            <img src="../img/logo.png" alt="">
             <span class="d-none d-lg-block tit-logo">Style<span class="text-blank tit-logo">Hub</span></span>
         </a>
 
@@ -162,6 +172,11 @@ $cerrar = "../logica/cerrar_sesion.php";
           <i class="bi bi-house-door"></i><span>Pagina Inicio</span></i>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pedidos_p.php?id=<?php echo htmlspecialchars($id); ?>">
+          <i class="bi bi-bag-check"></i><span>Pedidos</span></i>
+        </a>
+      </li>
     
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
@@ -170,7 +185,7 @@ $cerrar = "../logica/cerrar_sesion.php";
         <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
           <li>
             <a href="registro-prenda.php?id=<?php echo htmlspecialchars($id); ?>">
-              <i class="bi bi-circle"></i><span>Registrar</span>
+              <i class="bi bi-bag-check"></i><span>Registrar</span>
             </a>
           </li>
           <li>
@@ -202,10 +217,7 @@ $cerrar = "../logica/cerrar_sesion.php";
       <div class="row">
 
         <div class="col-md-12">
-         
-
-            <!-- Fin Mejor evaluada -->
-
+        
             <!-- Conteo clientes  -->
             <div class="col-xxl-6 col-md-6">
               
@@ -221,6 +233,30 @@ $cerrar = "../logica/cerrar_sesion.php";
                     <div class="ps-3">
                       <h6>Registradas</h6>
                       <span class="text-muted small pt-2 ps-1">Cantidad: <b>100</b></span>
+                      <br>
+                      <span class="text-muted small pt-2 ps-1"> <b>En aumento</b> </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Fin Conteo Clientes -->
+
+            <!-- Conteo clientes  -->
+            <div class="col-xxl-6 col-md-6">
+              
+              <div class="card info-card customers-card">
+
+                <div class="card-body">
+                  <h5 class="card-title"> <b>Pedidos</b> </h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-people"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>Registradas</h6>
+                      <span class="text-muted small pt-2 ps-1">Cantidad: <b><?php echo $total_pedidos; ?></b></span>
                       <br>
                       <span class="text-muted small pt-2 ps-1"> <b>En aumento</b> </span>
                     </div>
