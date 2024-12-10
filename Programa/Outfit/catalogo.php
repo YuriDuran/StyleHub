@@ -30,7 +30,10 @@ $genero = $_GET['genero'];
     $categoria = isset($_GET['id_categoria']) ? mysqli_real_escape_string($conexion, $_GET['id_categoria']) : '';
 
     // Construir la consulta SQL base
-    $sql = "SELECT * FROM productos WHERE estado = '2' AND genero = '" . $genero . "' AND stock > 0";
+    $sql = "SELECT p.* FROM productos p 
+        JOIN pyme y ON p.id_pyme = y.id_pyme 
+        WHERE p.estado = '2' AND p.genero = '" . $genero . "' 
+        AND p.stock > 0 AND y.estado_pyme = 2";
 
     // Agregar filtros a la consulta
     if (!empty($talla)) {

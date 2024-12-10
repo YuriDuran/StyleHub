@@ -2,10 +2,9 @@
 require_once 'function.php';
 require_once 'conexion.php';
 
-validarAdmin('verPymes.php');
-$query = "SELECT * FROM pyme"; 
+validarAdmin('aprobarPyme.php');
+$query = "SELECT * FROM pyme WHERE estado_pyme = 1"; 
 $resultado = $conexion->query($query);
-
 
 ?>
 
@@ -15,7 +14,6 @@ $resultado = $conexion->query($query);
 <body>
     <?php render_template('sideBarAdmin'); ?>
     
-
     <div>
         <!-- Aqui se encuentra el cuerpo de la pagina -->
         <main>
@@ -23,26 +21,27 @@ $resultado = $conexion->query($query);
 
             <!-- Cuerpo tabla -->
             <div class="fondoF">
-                <h3 class="titu">Pymes</h3>
+                <h3 class="titu">Aprobar Pymes</h3>
 
                 <table class="styled-table">
                     <thead>
                         <tr>
-                            <th>Id Pyme</th>
                             <th>Nombre Pyme</th>
                             <th>direccion</th>
-                            <th>Porcentaje comision</th>
                             <th>Estado</th>
-                            <th>ver</th>
+                            <th>acciones</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php if ($resultado->num_rows === 0) { ?>
+                            <tr>
+                                <td colspan="4">No existen solicitudes por aprobar.</td>
+                            </tr>
+                        <?php } else { ?>
                         <?php while ($filas = mysqli_fetch_assoc($resultado)) { ?>
                             <tr>
-                                <td><?php echo $filas['id_pyme'] ?></td>
                                 <td><?php echo $filas['nom_pyme'] ?></td>
                                 <td><?php echo $filas['dirección'] ?></td>
-                                <td><?php echo $filas['comisión'] ?>%</td>
                                 <?php if ($filas['estado_pyme'] == '1') { ?>
                                     <td>No aprobado</td>
                                 <?php } else if ($filas['estado_pyme'] == '2') { ?>
@@ -50,8 +49,10 @@ $resultado = $conexion->query($query);
                                 <?php } else if ($filas['estado_pyme'] == '3') { ?>
                                     <td>Aprobada</td>
                                 <?php } ?>
-                                <td><button class="si4"><ion-icon name="eye-outline"></ion-icon> Ver</button></td>
+                                <td><button class="si5"><ion-icon name="checkmark-done-circle-outline"></ion-icon>Aprobar</button>
+                                <button class="si6"><ion-icon name="eye-outline"></ion-icon>Rechazar</button></td>
                             </tr>
+                        <?php } ?>
                         <?php } ?>
                     <tbody>
                 </table>

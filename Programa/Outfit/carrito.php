@@ -13,7 +13,12 @@ require_once 'function.php';
         <h1>Carrito de Compras</h1>
 
         <?php if (empty($_SESSION['carrito'])): ?>
-            <p>Tu carrito está vacío</p>
+            <div class="text-center mt-5">
+                <p>Tu carrito está vacío</p>
+                <p>revisa nuestros catalogos</p>
+                <a href="catalogo.php?genero=mujer"><button class="btn btn-primary modelo3">Mujer</button></a>
+                <a href="catalogo.php?genero=hombre"><button class="btn btn-primary modelo3">Hombre</button></a>
+            </div>
         <?php else: ?>
             <div class="table-responsive">
                 <table class="table">
@@ -53,8 +58,8 @@ require_once 'function.php';
                     </tfoot>
                 </table>
             </div>
-            <div class="text-end mt-3">
-                <a href="index.php" class="btn btn-secondary">Seguir Comprando</a>
+            <div class="text-end mt-3 ">
+                <a href="index.php" class="btn btn-secondary seguir">Seguir Comprando</a>
                 <form action="prueba.php" method="POST" style="display: inline;">
                     <input type="hidden" name="monto" value="<?php echo obtenerTotalCarrito(); ?>">
                     <input type="hidden" name="orden" value="<?php echo uniqid('orden_'); ?>">
@@ -64,18 +69,18 @@ require_once 'function.php';
                         echo '<input type="hidden" name="productos[]" value="' . htmlspecialchars(json_encode($item)) . '">';
                     }
                     ?>
-                    <button type="submit" class="btn btn-primary">Proceder al Pago</button>
+                    <button type="submit" class="btn btn-primary modelo3">Proceder al Pago</button>
                 </form>
             </div>
-            <div class="text-end mt-3">
-                <form action="render.php" method="GET">
+            <div class="text-center mt-5">
+                <form action="render.php" method="GET" class="d-flex justify-content-center">
                     <?php foreach ($_SESSION['carrito'] as $item): ?>
-                        <div>
-                            <input type="checkbox" name="productos[]" value="<?php echo $item['id']; ?>">
-                            <?php echo $item['nombre']; ?>
+                        <div class="form-check me-3 mt-1">
+                            <input type="checkbox" name="productos[]" value="<?php echo $item['id']; ?>" class="form-check-input">
+                            <label class="form-check-label"><?php echo $item['nombre']; ?></label>
                         </div>
                     <?php endforeach; ?>
-                    <button type="submit" class="btn btn-primary">Ver Productos Seleccionados</button>
+                    <button type="submit" class="btn btn-primary modelo3">Ver Productos Seleccionados</button>
                 </form>
             </div>
         <?php endif; ?>

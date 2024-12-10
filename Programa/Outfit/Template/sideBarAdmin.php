@@ -37,6 +37,12 @@
                     <span class="icon"><ion-icon name="checkmark-done-circle-outline"></ion-icon></span>
                     <span class="text">Verificacion de productos</span>
                 </a>
+            </li> 
+            <li>
+                <a href="aprobarPyme.php">
+                    <span class="icon"><ion-icon name="checkmark-done-circle-outline"></ion-icon></span>
+                    <span class="text">Aprobar Pymes</span>
+                </a>
             </li>
         </ul>
         <ul>

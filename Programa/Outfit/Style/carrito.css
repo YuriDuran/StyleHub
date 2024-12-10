@@ -88,6 +88,32 @@ main {
     border-radius: 20px;
 }
 
+.form-check-input:checked{
+    background-color: #ddb892 !important;
+    border-color: burlywood !important;
+}
+
+.modelo3{
+    background-color: #ddb892 !important;
+    border-color: #e2ae7a !important;
+}
+
+.seguir{
+    background-color: #bde0fe !important;
+    border-color: #9acdfa !important;
+    color: black !important;
+}
+
+.modelo3:hover{
+    transform: scale(1.02);
+    background-color: #e2a160 !important;
+}
+
+.seguir:hover{
+    background-color: #56adfa !important;
+    transform: scale(1.02);
+}
+
 /*! Aqui se encuentra el css del footer */
 footer {
     color: white;
